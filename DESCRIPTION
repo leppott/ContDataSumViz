@@ -1,0 +1,18 @@
+Package: ContDataSumViz
+Type: Package
+Title: Create Visualizations of Continuous Monitoring Data
+Version: 0.1.0.9001
+Author: c(
+	person("Erik W.", "Leppo", email="Erik.Leppo@tetratech.com", role=c("aut","cre")), 
+	person("Jen", "Stamp", role="ctb"))
+Maintainer: Erik W. Leppo <Erik.Leppo@tetratech.com>
+Description: Tools for creating visualizations for continuous monitoring data.
+    Outputs from the ContDataQC package import seamlessly.  Shiny app included.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+URL: https://github.com/leppott/ContDataSumViz
+BugReports: https://github.com/leppott/ContDataSumViz/issues
+RoxygenNote: 7.1.2
+Suggests:
+    shiny
