@@ -215,6 +215,14 @@ badger::badge_github_actions(pkg_GH)
 
 ```
 
+# GH Actions
+
+```{r actions}
+usethis::use_github_action("pkgdown")
+usethis::use_github_action_check_standard()
+usethis::use_coverage("codecov")
+use_github_action("test-coverage")
+```
 
 
 

@@ -4,9 +4,17 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2022-01-21 15:04:51
+    #> Last Update: 2022-01-21 15:29:25
 
 # Version History
+
+## Changes in Version 0.1.0.9002 (2022-01-21)
+
+-   doc: Add GitHub Actions with usethis package
+    -   check standard
+    -   codecov
+    -   test-coverage
+    -   pkgdown
 
 ## Changes in Version 0.1.0.9001 (2022-01-21)
 
