@@ -3,13 +3,13 @@ README-ContDataSumViz
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-    #> Last Update: 2022-01-21 15:03:40
+    #> Last Update: 2022-01-25 08:25:47
 
 # ContDataSumViz
 
 Functions to aid the data analysis of bioassessment and biomonitoring
 data. Suite of functions and tools for metric calculation and scoring
-for mult-metric indices and related data manipulation.
+for multi-metric indices and related data manipulation.
 
 # Badges
 

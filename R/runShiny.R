@@ -2,8 +2,8 @@
 #'
 #' @description Launches Shiny app for ContDataSumViz package.
 #'
-#' @details The Shiny app based on the R package ContDataSumViz is included in the
-#' R package. This function launches that app.
+#' @details The Shiny app based on the R package ContDataSumViz is included in
+#' the R package. This function launches that app.
 #'
 #' The Shiny app is online at:
 #' https://tetratech-wtr-wne.shinyapps.io/ContDataSumViz

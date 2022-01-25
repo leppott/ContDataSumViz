@@ -4,9 +4,16 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2022-01-21 15:29:25
+    #> Last Update: 2022-01-25 08:26:25
 
 # Version History
+
+## Changes in Version 0.1.0.9003 (2022-01-25)
+
+-   style: Trim lines to 80 characters
+    -   runShiny.R
+-   style: Fix spelling
+    -   README
 
 ## Changes in Version 0.1.0.9002 (2022-01-21)
 
