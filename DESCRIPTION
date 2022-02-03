@@ -1,7 +1,7 @@
 Package: ContDataSumViz
 Type: Package
 Title: Create Visualizations of Continuous Monitoring Data
-Version: 0.1.0.9003
+Version: 0.1.0.9004
 Author: c(
 	person("Erik W.", "Leppo", email="Erik.Leppo@tetratech.com", role=c("aut","cre")), 
 	person("Jen", "Stamp", role="ctb"))
@@ -15,4 +15,13 @@ URL: https://github.com/leppott/ContDataSumViz
 BugReports: https://github.com/leppott/ContDataSumViz/issues
 RoxygenNote: 7.1.2
 Suggests:
-    shiny
+    DT,
+    ggplot2,
+    plotly,
+    shiny,
+    shinyshiny,
+    shinydashboard,
+    shinydashboardPlus,
+    shinyjs,
+    shinyWidgets,
+    testthat

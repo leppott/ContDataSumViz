@@ -18,6 +18,12 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.1.0.9004 (2022-01-25)
+
+* feature: Add Shiny app
+* docs: Update DESCRIPTION with package for Shiny app
+* docs: Add data-raw folder for generating HTML text for Shiny app
+
 ## Changes in Version 0.1.0.9003 (2022-01-25)
 
 * style: Trim lines to 80 characters
