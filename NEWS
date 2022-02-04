@@ -4,9 +4,27 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2022-01-25 08:26:25
+    #> Last Update: 2022-02-04 13:54:44
 
 # Version History
+
+## Changes in Version 0.1.0.9006 (2022-02-04)
+
+-   feature: build_summary() for creating site summary report, Issue #2
+    -   Function
+    -   RMD file
+    -   readxl package to DESCRIPTION
+    -   Example data to inst  
+
+## Changes in Version 0.1.0.9005 (2022-02-03)
+
+-   feature: Add issue templates on GitHub
+
+## Changes in Version 0.1.0.9004 (2022-01-25)
+
+-   feature: Add Shiny app
+-   docs: Update DESCRIPTION with package for Shiny app
+-   docs: Add data-raw folder for generating HTML text for Shiny app
 
 ## Changes in Version 0.1.0.9003 (2022-01-25)
 

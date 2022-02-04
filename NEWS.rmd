@@ -18,6 +18,18 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.1.0.9006 (2022-02-04)
+
+* feature:  build_summary() for creating site summary report, Issue #2
+    + Function
+    + RMD file 
+    + readxl package to DESCRIPTION
+    + Example data to inst\extdata\
+    
+## Changes in Version 0.1.0.9005 (2022-02-03)
+
+* feature: Add issue templates on GitHub
+
 ## Changes in Version 0.1.0.9004 (2022-01-25)
 
 * feature: Add Shiny app

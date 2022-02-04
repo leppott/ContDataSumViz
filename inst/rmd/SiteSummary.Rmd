@@ -1,0 +1,96 @@
+---
+title: "Site Summary"
+date: "`r format(Sys.time(), '%Y-%m-%d %H:%M:%S')`"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 3
+    toc_float: no
+  word_document:
+    toc: yes
+  pdf_document:
+    toc: yes
+    toc_depth: 3
+    fig_caption: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, results = 'asis', warning = FALSE)
+# myFiles <- list.files("data")
+
+```
+
+# Site Information
+```{r head}
+cat(paste0("**Site ID**\n\n"
+           , df_merge[df_merge$Type == "id", "Caption"]
+           , "\n\n"))
+cat(paste0("**Site Description**\n\n"
+           , df_merge[df_merge$Type == "description", "Caption"]
+           , "\n\n"))
+```
+
+```{r body}
+df_body <- df_merge[!(df_merge$Type %in% c("id", "description")), ]
+nrow_body <- nrow(df_body)
+
+# Loop through rows
+for (i in seq_len(nrow_body)) {
+  i_Type <- df_body[i, "Type"]
+  cat("\n\n")
+  if(i_Type == "figure") {
+    # Figure
+    i_file <- file.path(dir_data_full, df_body[i, "Files"])
+    i_cap <- df_body[i, "Caption"]
+    #knitr::include_graphics(i_file)
+    i_image <- paste0("![", i_cap, "](", i_file, ")")
+    cat(i_image)
+  } else if(i_Type == "table") {
+    # Table
+    i_file <- file.path(dir_data_full, df_body[i, "Files"])
+    i_cap <- df_body[i, "Caption"]
+    df_i <- read.csv(i_file)
+    #knitr::kable(df_i, caption = i_cap)
+    # Construct table
+    nrow_df_i <- nrow(df_i)
+    ncol_df_i <- ncol(df_i)
+    names_df_i <- names(df_i)
+    # tbl names
+    i_tbl_names <- paste0("|"
+                         , paste(names_df_i, collapse = "|")
+                         , "|")
+    cat(i_tbl_names)
+    cat("\n")
+    # tbl horizontal line
+    i_tbl_hl <- paste0("|"
+                       , paste(rep("---", ncol_df_i), collapse = "|")
+                       , "|")
+    cat(i_tbl_hl)
+    cat("\n")
+    # tbl data
+
+    for (j in seq(2, nrow_df_i)) {
+      i_tbl_data <- paste0("|"
+                         , paste(df_i[j, ], collapse = "|")
+                         , "|")
+      cat(i_tbl_data)
+      cat("\n")
+    }## j
+    # tbl caption
+    i_tbl_caption <- paste0(": ", i_cap)
+    cat(i_tbl_caption)
+  } else if(i_Type == "text") {
+    # Text
+    cat(paste0(df_body[i, "Caption"]))
+  } else if(i_Type %in% paste0("header", 1:3)) {
+    # Header
+    header_num <- substr(i_Type, 7, 7)
+    header_prefix <- paste(rep("#", header_num), collapse = "")
+    header_text <- paste0(header_prefix
+                         , " "
+                         , df_body[i, "Caption"])
+    cat(paste0(header_text))
+  }## IF ~ i_Type
+  cat("\n\n")
+}## FOR ~ i
+```
