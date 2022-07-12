@@ -14,6 +14,10 @@ library(shinyBS)
 library(DT)
 # masks shinydashboardPlus::progressBar
 # masks shinyjs::alert
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(plotly)
 
 # Source ----
 sb_main            <- source("external/sb_main.R", local = TRUE)$value

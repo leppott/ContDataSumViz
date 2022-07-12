@@ -155,7 +155,7 @@ build_summary <- function(dir_data = NULL
   df_meta[, "rowID"] <- 1:nrow(df_meta)
   df_merge <- merge(df_meta
                     , df_files
-                    , by.x = "Prefix"
+                    , by.x = "rowID"
                     , by.y = "Prefix"
                     , all.x = TRUE
                     , sort = FALSE)

@@ -4,9 +4,22 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2022-02-04 13:54:44
+    #> Last Update: 2022-07-12 15:49:01
 
 # Version History
+
+## Changes in Version 0.1.0.9008 (2022-07-12)
+
+-   fix: Update merge statement in build_summary, Issue #3
+
+## Changes in Version 0.1.0.9007 (2022-07-12)
+
+-   partial update with site summary report, Issue #2
+
+## Changes in Version 0.1.0.9006 (2022-02-04)
+
+-   feature: Add missing data report
+    -   Add more packages to suggests in DESCRIPTION
 
 ## Changes in Version 0.1.0.9006 (2022-02-04)
 
