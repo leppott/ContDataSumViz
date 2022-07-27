@@ -41,6 +41,29 @@ myRMD <- "Report_SiteSummary.rmd"
 source(file.path(path.package("ContDataQC"), "extdata", "config.ORIG.R"))
 data.import <- read.csv(file.path(tempdir(), myFile))
 
+
+# # Alternative
+# library(daiquiri)
+# myCols <- c("SiteID"
+#             , "Date.Time"
+#             , "Water.Temp.C"
+#             , "Air.Temp.C"
+#             , "Water.P.psi"
+#             , "Air.BP.psi"
+#             , "Sensor.Depth.ft")
+# fts <- fieldtypes(SiteID = ft_uniqueidentifier()
+#                   , Date.Time = ft_timepoint()
+#                   , Water.Temp.C = ft_numeric()
+#                   , Air.Temp.C = ft_numeric()
+#                   , Water.P.psi = ft_numeric()
+#                   , Air.BP.psi = ft_numeric()
+#                   , Sensor.Depth.ft = ft_numeric())
+# daiqobj <- create_report(
+#   data.import[, myCols]
+#   , fieldtypes = fts
+#   , dataset_shortdesc = paste0("example dataset, ContDataQ, ", myFile)
+# )
+
 # RMD needs
 strFile <- myFile
 strFile.SiteID <- "testSiteID"

@@ -18,6 +18,10 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.1.0.9009 (2022-07-27)
+
+* feature: Add missing data report function, Issue #4
+
 ## Changes in Version 0.1.0.9008 (2022-07-12)
 
 * fix: Update merge statement in build_summary, Issue #3
