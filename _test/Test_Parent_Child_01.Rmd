@@ -1,0 +1,10 @@
+---
+output: html_notebook
+---
+### Child doc
+
+```{r}
+# cat("### Child")
+# cat(paste0("### Child ", param_num, ", ", param_children[param_num]))
+lm(mpg ~ ., data = mtcars[, c("mpg", x)])
+```

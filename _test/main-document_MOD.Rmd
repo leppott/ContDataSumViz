@@ -1,0 +1,49 @@
+---
+title: "Main Penguin document"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+param <- sort(unique(palmerpenguins::penguins$species))
+param_len <- length(param)
+
+```
+
+# Children {.tabset}
+Using tabset get all the penguin names in "tabs".
+Each section should print ok but get the same info.
+
+```{r, results = 'asis', child=if (param_len >= 1) 'species-child_01.Rmd'}
+param_num <- 1
+# Define new environment
+child_env <- new.env()
+child_env$species <- param[param_num]
+
+# knit the document and save the character output to an object
+res <- knitr::knit_child(
+  "species-child.Rmd",
+  envir = child_env,
+  quiet = TRUE
+)
+
+# Cat the object to make it render in your main document
+cat(res, sep = '\n')
+```
+
+```{r, results = 'asis', child=if (param_len >= 2) 'species-child_02.Rmd'}
+param_num <- 2
+# Define new environment
+child_env <- new.env()
+child_env$species <- param[param_num]
+
+# knit the document and save the character output to an object
+res <- knitr::knit_child(
+  "species-child.Rmd",
+  envir = child_env,
+  quiet = TRUE
+)
+
+# Cat the object to make it render in your main document
+cat(res, sep = '\n')
+```

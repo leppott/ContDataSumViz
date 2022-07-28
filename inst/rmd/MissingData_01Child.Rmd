@@ -1,0 +1,176 @@
+---
+output: html_document
+---
+
+## `r child_env$p_name`
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r}
+# Cannot label chunks in child
+# Produces dups when re-use the same file with different parameters
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# DT::datatable and plotly objects can only have one per chunk
+# this is why they don't render when generate them in a loop
+# OK if use a Parent-Child set of RMD files
+
+# 3. Missing Data Info, by Parameter
+
+# Setup---
+i <- ContData.env$myNames.DataFields[child_env$p_num]
+i.num <- match(i,myParameters)
+myTitle.Sub <- myParameters.Lab[i.num]
+
+i.flag <- paste(ContData.env$myName.Flag, i, sep = ".")
+
+# Title----
+cat("### ", myTitle.Sub, sep="")
+cat("\n\n")
+
+# Flags
+cap <- "Number of Records, flags"
+myTable <- addmargins(table(data.import[, i.flag]
+                           , useNA = "ifany")
+                     ,1)
+print(knitr::kable(t(as.matrix(myTable))
+                   , format = "markdown"
+                   , caption = cap))
+cat("\n\n")
+
+# Num Records, year/month
+cap <- "Number of Records, by year and month (with totals)"
+myTable <- addmargins(table(data.import[,ContData.env$myName.Yr]
+                          ,data.import[,ContData.env$myName.Mo]
+                          , useNA = "ifany"))
+print(knitr::kable(myTable
+                   , format="markdown"
+                   , row.names=TRUE
+                   , caption = cap))
+cat("\n\n")
+
+# Plot
+df_base <- data.import %>%
+  dplyr::filter(!!as.name(i.flag) == "P") %>%
+  dplyr::group_by(!!as.name(ContData.env$myName.MoDa)
+                  , !!as.name(ContData.env$myName.Yr)) %>%
+  dplyr::summarise(n = dplyr::n(), .groups = "drop")
+# munge
+df_base$MonthDay <- sprintf("%04d", df_base$MonthDay)
+# change class
+df_base$MonthDay <- as.character(df_base$MonthDay)
+df_base$Year <- as.character(df_base$Year)
+
+# Plot, heat map
+str_title_hm <- paste0("Records with 'P'assing flags, ", mySiteID, ", ", i)
+cap <- "Records marked as S, X, or NA will show as missing."
+p_hm <- ggplot2::ggplot(df_base
+                      , ggplot2::aes(x = !!as.name(ContData.env$myName.Yr)
+                                  , y = !!as.name(ContData.env$myName.MoDa)
+                                  , fill = n)) +
+  ggplot2::geom_tile() +
+  ggplot2::scale_fill_gradient(low = "orange", high = "dark green") +
+  ggplot2::labs(title = str_title_hm
+                , caption = cap) +
+  ggplot2::scale_y_discrete(limits = rev)
+  # without plotly use
+  #scale_y_discrete(limits = rev, guide = ggplot2::guide_axis(check.overlap = TRUE))
+
+# Map, Display ----
+cat("Plot is interactive.  Zoom in and y-axis will become visible.\n\n")
+plotly::ggplotly(p_hm)
+cat("\n\n")
+
+# Dates, Missing Data
+
+# table of dates with missing data
+df_missing <- df_base %>%
+  dplyr::filter(n != records.expected) %>%
+  dplyr::select(Year, MonthDay, n) %>%
+  dplyr::arrange(Year, MonthDay)
+cap <- paste0("Dates with Potential Missing Records (expected = "
+            , records.expected
+            , ").")
+DT::datatable(df_missing
+              , filter = "top"
+              , caption = cap
+              , options = list(scrollX = TRUE
+                               , scrollY = TRUE
+                               , pageLength = 30
+                               , lengthMenu = c(15, 30, 60, 90, 120, 180, 366)
+                               , autoWidth = TRUE
+                               ))
+#~~~~~
+# should be ok with just the above
+# leave in example code below
+#~~~
+
+# 
+# 
+# cat("Number of records by day and month (with totals)")
+# cat("\n")
+# myTable <- addmargins(table(data.import[,ContData.env$myName.Day]
+#                           ,data.import[,ContData.env$myName.Mo]
+#                           , useNA = "ifany"))
+# #table, kable (static)
+# #print(knitr::kable(myTable, format="markdown", row.names=TRUE))
+# 
+# # table, DT (interactive)
+# DT::datatable(as.data.frame.matrix(myTable)
+#             , filter = "top"
+#             , caption = "Records by day and month"
+#             , options = list(scrollX = TRUE
+#                              , scrollY = TRUE
+#                              , lengthMenu = c(10, 20, 32)
+#                              , autoWidth = TRUE
+#                              ))
+# 
+# 
+# 
+# cat("\n\n") 
+# #
+
+# #
+# 
+# #~~~~~~~~~~~~
+# # New, 20220616
+# # OTHER
+# 
+# 
+# # Pivot
+# df_plot <- tidyr::pivot_wider(df_base
+#                      , names_from = ContData.env$myName.Yr
+#                      , values_from = "n")
+# 
+# cat("\n\n")
+# #
+# 
+# # table, DT (interactive)
+# # add color code (https://rstudio.github.io/DT/010-style.html)
+# brks <- quantile(df_plot[, -1], probs = seq(.05, .95, .05), na.rm = TRUE)
+# clrs <- round(seq(255, 40, length.out = length(brks) + 1), 0) %>%
+#               {paste0("rgb(255,", ., ",", ., ")")}
+# 
+# 
+# cat <- "Records by month-day and year"
+# print(knitr::kable(df_plot, caption = cat))
+# 
+# DT::datatable(df_plot
+#             , filter = "top"
+#             , caption = cat
+#             , options = list(scrollX = TRUE
+#                              , scrollY = TRUE
+#                              , pageLength = 30
+#                              , lengthMenu = c(15, 30, 60, 90, 120, 180, 366)
+#                              , autoWidth = TRUE
+#                              )) 
+# # coloring doesn't look right
+# # %>%
+# #   formatStyle(names(df_plot)[-1]
+# #                , backgroundColor = styleInterval(brks, clrs))
+# # 
+# cat("\n\n")
+
+```

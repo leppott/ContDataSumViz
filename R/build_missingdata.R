@@ -58,7 +58,7 @@ build_missingdata <- function(dir_data = tempdir()
   debug_version <- c("local", "pkg")[2]
   if(boo_debug == TRUE) {
     str_file <- "DATA_test2_Aw_20130101_20141231.csv"
-    str_rmd <- "MissingData.Rmd"
+    str_rmd <- "MissingData_00Parent.Rmd"
     if(debug_version == "local") {
       dir_data         <- tempdir()
       file_data        <- str_file
@@ -106,7 +106,7 @@ build_missingdata <- function(dir_data = tempdir()
 
   ## QC, rmd, null----
   if(is.null(file_path_rmd)) {
-    file_path_rmd <- system.file("rmd/MissingData.Rmd"
+    file_path_rmd <- system.file("rmd/MissingData_00Parent.Rmd"
                             , package="ContDataSumViz")
   }## IF ~ file_path_rmd, null
 
@@ -153,6 +153,14 @@ build_missingdata <- function(dir_data = tempdir()
 
   # define pipe, otherwise code RMD fails
   `%>%` <- dplyr::`%>%`
+
+  # testing
+  # file_path_rmd <- file.path("inst", "rmd", "MissingData_00Parent.Rmd")
+  # file_datetime <- format(Sys.time(), '%Y%m%d_%H%M%S')
+  # output_file <- file.path(paste0("MissingData_"
+  #                                 , file_datetime
+  #                                 , "_."
+  #                                 , output_format))
 
   # Render RMD ----
   rmarkdown::render(input = file_path_rmd

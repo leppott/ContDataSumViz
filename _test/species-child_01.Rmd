@@ -1,0 +1,43 @@
+---
+output: html_document
+---
+
+## Species `r child_env$species`
+
+```{r, include=FALSE}
+library(ggplot2)
+library(dplyr)
+library(palmerpenguins)
+library(tidyr)
+library(plotly)
+library(DT)
+knitr::opts_chunk$set(echo = FALSE)
+
+# Filter the penguins data by species
+#data <- filter(penguins, species == species)
+```
+
+```{r}
+plot_species <- filter(penguins, species == child_env$species) %>%
+  ggplot(aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_point(na.rm = TRUE) +
+  labs(title = child_env$species)
+plotly::ggplotly(plot_species)
+```
+
+```{r}
+df_species <- filter(penguins, species == child_env$species) %>% 
+  pivot_longer(ends_with("mm"),
+               names_to = "cols",
+               values_to = "mm", 
+               values_drop_na = TRUE) %>% 
+  group_by(cols) %>% 
+  summarise(across(mm, 
+                   .fns = list(mean = mean, 
+                               min = min, 
+                               max = max,
+                               N = length),
+                    .names = "{.fn}")
+  )
+DT::datatable(df_species, caption = child_env$species)
+```

@@ -1,0 +1,56 @@
+---
+title: "R Notebook"
+subtitle: "Parent with Children"
+output: html_notebook
+---
+
+# Purpose
+
+Test out parent-child chunk set up in R Notebook.
+
+https://bookdown.org/yihui/rmarkdown-cookbook/child-document.html
+
+# Main
+Loop through a few options and have them as Child chunks.
+
+Use mtcars dataset
+
+```{r start}
+knitr::kable(head(mtcars), caption = "mtcars (head).")
+
+#cat(summary(mtcars))
+
+param_user <- c("Mazda RX4", "Honda Civic", "Camaro Z28", "Ford Mustang")
+param_children <- param_user[param_user %in% rownames(mtcars)]
+param_children_len <- length(param_children)
+
+```
+
+## Child Docs
+Use separate Child docs (that are the same) and number them.
+Then include or not based on number of parameters.
+
+
+
+```{r comment}
+# ```{r child01, echo=TRUE, results='asis', child=if(param_children_len >= 1) 'Test_Parent_Child_01.Rmd'}
+# param_num <- 1
+# cat(paste0("## Child", param_num, "a"))
+# ```
+# 
+# ```{r child02, echo=FALSE, results='asis', child=if(param_children_len >= 2) 'Test_Parent_Child_01.Rmd'}
+# param_num <- 2
+# cat(paste0("## Child", param_num, "a"))
+# ```
+```
+
+https://bookdown.org/yihui/rmarkdown-cookbook/child-document.html
+
+```{r, echo=FALSE, results='asis'}
+res <- lapply(setdiff(names(mtcars), 'mpg'), function(x) {
+  knitr::knit_child('Test_Parent_Child_01.Rmd'
+                    , envir = environment()
+                    , quiet = TRUE)
+})
+cat(unlist(res), sep = '\n')
+```

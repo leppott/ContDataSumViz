@@ -1,0 +1,115 @@
+---
+title: "Main Penguin document"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+param <- as.vector(sort(unique(palmerpenguins::penguins$species)))
+param_len <- length(param)
+```
+
+# Purpose
+Test Notebook.
+
+Using tabset get all the penguin names in "tabs".
+Each section should print with a plotly plot and DT table.
+Cannot have multiples of either in single code chunk.
+That is, if did this as a single chunk instead of multiple with Children it
+wouldn't work.  :)
+
+Thanks to:
+
+* https://drmowinckels.io/blog/2021-12-17-rmarkdown-child-templates/
+
+* https://bookdown.org/yihui/rmarkdown-cookbook/child-document.html
+
+# Children {.tabset}
+
+```{r adelie, results = 'asis'}
+param_num <- 1
+
+# Define new environment
+child_env <- new.env()
+child_env$species <- "Adelie"
+child_env$p_num <- param_num
+child_env$p_len <- param_len
+
+# knit the document and save the character output to an object
+res <- knitr::knit_child(
+  "species-child.Rmd",
+  envir = child_env,
+  quiet = TRUE
+)
+
+# Cat the object to make it render in your main document
+if(child_env$species %in% param) {
+  cat(res, sep = '\n')
+}## IF ~ End
+```
+
+```{r fred, results = 'asis'}
+param_num <- 2
+
+# Define new environment
+child_env <- new.env()
+child_env$species <- "fred"
+child_env$p_num <- param_num
+child_env$p_len <- param_len
+
+# knit the document and save the character output to an object
+res <- knitr::knit_child(
+  "species-child.Rmd",
+  envir = child_env,
+  quiet = TRUE
+)
+
+# Cat the object to make it render in your main document
+if(child_env$species %in% param) {
+  cat(res, sep = '\n')
+}## IF ~ End
+```
+
+```{r chinstrap, results = 'asis'}
+param_num <- 3
+
+# Define new environment
+child_env <- new.env()
+child_env$species <- "Chinstrap"
+child_env$p_num <- param_num
+child_env$p_len <- param_len
+
+# knit the document and save the character output to an object
+res <- knitr::knit_child(
+  "species-child.Rmd",
+  envir = child_env,
+  quiet = TRUE
+)
+
+# Cat the object to make it render in your main document
+if(child_env$species %in% param) {
+  cat(res, sep = '\n')
+}## IF ~ End
+```
+
+```{r gentoo, results = 'asis'}
+param_num <- 4
+
+# Define new environment
+child_env <- new.env()
+child_env$species <- "Gentoo"
+child_env$p_num <- param_num
+child_env$p_len <- param_len
+
+# knit the document and save the character output to an object
+res <- knitr::knit_child(
+  "species-child.Rmd",
+  envir = child_env,
+  quiet = TRUE
+)
+
+# Cat the object to make it render in your main document
+if(child_env$species %in% param) {
+  cat(res, sep = '\n')
+}## IF ~ End
+```

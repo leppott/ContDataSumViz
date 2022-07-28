@@ -4,9 +4,13 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2022-07-27 16:38:00
+    #> Last Update: 2022-07-28 12:26:08
 
 # Version History
+
+## Changes in Version 0.1.0.9010 (2022-07-28)
+
+-   refactor: Update missing data report, Issue #4
 
 ## Changes in Version 0.1.0.9009 (2022-07-27)
 
