@@ -13,15 +13,25 @@ output:
 ```{r setup, include=FALSE}
 # Options
 knitr::opts_chunk$set(results='asis', echo=FALSE, warning=FALSE)
+
 # Packages
 # library(knitr)
 # library(DT)
 # library(plotly)
 # library(ggplot2)
 # library(dplyr)
+
 # Data files
 strFile <- file.path(dir_data, file_data)
 data.import <- read.csv(strFile)
+
+# Excle Output
+# Sheets to List
+ ls_excel <- list()
+NOTES <- data.frame(matrix(ncol = 3, nrow = 0))
+ls_excel[["NOTES"]] <- NOTES
+## add additional sheets as the tables are created
+### re-used names so cannot add at the end
 ```
 
 # DATA FILE INFORMATION 
@@ -132,6 +142,12 @@ cat("\n\n")
                            , row.names=TRUE
                            , caption = cap))
     cat("\n\n")
+    # Export Table to Excel
+    df_myTable <- as.data.frame.matrix(myTable, row.names = FALSE)
+    df_myTable <- cbind(rownames(myTable), df_myTable)
+    colnames(df_myTable)[1] <- ""
+    name_table4list <- "AllData_Year_Month"
+    ls_excel[[name_table4list]] <- df_myTable
     
     # DT::datatable(myTable, caption = cap)
     # cat("\n\n")
@@ -146,6 +162,13 @@ cat("\n\n")
                            , row.names=TRUE
                            , caption = cap))
     cat("\n\n") 
+    # Add Table to Excel
+    # Export Table to Excel
+    df_myTable <- as.data.frame.matrix(myTable, row.names = FALSE)
+    df_myTable <- cbind(rownames(myTable), df_myTable)
+    colnames(df_myTable)[1] <- ""
+    name_table4list <- "AllData_Day_Month"
+    ls_excel[[name_table4list]] <- df_myTable
 #     
 #     pandoc.table(myTable.month.day.rec.GT15,style="rmarkdown")
 #    
@@ -290,6 +313,48 @@ if(param_boo) {
 
   # Cat the object to make it render in your main document
   cat(res, sep = '\n')
+  
+  #~~~~~~~~~~~~~~~~~
+  # Excel
+  ## variables
+  i <- ContData.env$myNames.DataFields[child_env$p_num]
+  i.flag <- paste(ContData.env$myName.Flag, i, sep = ".")
+  #
+  ## Excel, Flags
+  myTable <- addmargins(table(data.import[, i.flag]
+                           , useNA = "ifany")
+                     , 1)
+  df_myTable <- as.data.frame.matrix(t(myTable))
+  name_table4list <- paste0(param_name, "_Flags")
+  ls_excel[[name_table4list]] <- df_myTable
+  #
+  ## Excel, Year Month
+  myTable <- addmargins(table(data.import[,ContData.env$myName.Yr]
+                          ,data.import[,ContData.env$myName.Mo]
+                          , useNA = "ifany"))
+  df_myTable <- as.data.frame.matrix(myTable, row.names = FALSE)
+  df_myTable <- cbind(rownames(myTable), df_myTable)
+  colnames(df_myTable)[1] <- ""
+  name_table4list <- paste0(param_name, "_Year_Month")
+  ls_excel[[name_table4list]] <- df_myTable
+  #
+  # Table to Excel, Missing
+  df_base <- data.import %>%
+    dplyr::filter(!!as.name(i.flag) == "P") %>%
+    dplyr::group_by(!!as.name(ContData.env$myName.MoDa)
+                    , !!as.name(ContData.env$myName.Yr)) %>%
+    dplyr::summarise(n = dplyr::n(), .groups = "drop")
+  # munge
+  df_base$MonthDay <- sprintf("%04d", df_base$MonthDay)
+  # change class
+  df_base$MonthDay <- as.character(df_base$MonthDay)
+  df_base$Year <- as.character(df_base$Year)
+  df_missing <- df_base %>%
+    dplyr::filter(n != records.expected) %>%
+    dplyr::select(Year, MonthDay, n) %>%
+    dplyr::arrange(Year, MonthDay)
+  name_table4list <- paste0(param_name, "_DaysMissing")
+  ls_excel[[name_table4list]] <- df_missing
 }## IF ~ END
 ```
 
@@ -317,6 +382,48 @@ if(param_boo) {
 
   # Cat the object to make it render in your main document
   cat(res, sep = '\n')
+  
+  #~~~~~~~~~~~~~~~~~
+  # Excel
+  ## variables
+  i <- ContData.env$myNames.DataFields[child_env$p_num]
+  i.flag <- paste(ContData.env$myName.Flag, i, sep = ".")
+  #
+  ## Excel, Flags
+  myTable <- addmargins(table(data.import[, i.flag]
+                           , useNA = "ifany")
+                     , 1)
+  df_myTable <- as.data.frame.matrix(t(myTable))
+  name_table4list <- paste0(param_name, "_Flags")
+  ls_excel[[name_table4list]] <- df_myTable
+  #
+  ## Excel, Year Month
+  myTable <- addmargins(table(data.import[,ContData.env$myName.Yr]
+                          ,data.import[,ContData.env$myName.Mo]
+                          , useNA = "ifany"))
+  df_myTable <- as.data.frame.matrix(myTable, row.names = FALSE)
+  df_myTable <- cbind(rownames(myTable), df_myTable)
+  colnames(df_myTable)[1] <- ""
+  name_table4list <- paste0(param_name, "_Year_Month")
+  ls_excel[[name_table4list]] <- df_myTable
+  #
+  # Table to Excel, Missing
+  df_base <- data.import %>%
+    dplyr::filter(!!as.name(i.flag) == "P") %>%
+    dplyr::group_by(!!as.name(ContData.env$myName.MoDa)
+                    , !!as.name(ContData.env$myName.Yr)) %>%
+    dplyr::summarise(n = dplyr::n(), .groups = "drop")
+  # munge
+  df_base$MonthDay <- sprintf("%04d", df_base$MonthDay)
+  # change class
+  df_base$MonthDay <- as.character(df_base$MonthDay)
+  df_base$Year <- as.character(df_base$Year)
+  df_missing <- df_base %>%
+    dplyr::filter(n != records.expected) %>%
+    dplyr::select(Year, MonthDay, n) %>%
+    dplyr::arrange(Year, MonthDay)
+  name_table4list <- paste0(param_name, "_DaysMissing")
+  ls_excel[[name_table4list]] <- df_missing
 }## IF ~ END
 ```
 
@@ -344,6 +451,48 @@ if(param_boo) {
 
   # Cat the object to make it render in your main document
   cat(res, sep = '\n')
+  
+  #~~~~~~~~~~~~~~~~~
+  # Excel
+  ## variables
+  i <- ContData.env$myNames.DataFields[child_env$p_num]
+  i.flag <- paste(ContData.env$myName.Flag, i, sep = ".")
+  #
+  ## Excel, Flags
+  myTable <- addmargins(table(data.import[, i.flag]
+                           , useNA = "ifany")
+                     , 1)
+  df_myTable <- as.data.frame.matrix(t(myTable))
+  name_table4list <- paste0(param_name, "_Flags")
+  ls_excel[[name_table4list]] <- df_myTable
+  #
+  ## Excel, Year Month
+  myTable <- addmargins(table(data.import[,ContData.env$myName.Yr]
+                          ,data.import[,ContData.env$myName.Mo]
+                          , useNA = "ifany"))
+  df_myTable <- as.data.frame.matrix(myTable, row.names = FALSE)
+  df_myTable <- cbind(rownames(myTable), df_myTable)
+  colnames(df_myTable)[1] <- ""
+  name_table4list <- paste0(param_name, "_Year_Month")
+  ls_excel[[name_table4list]] <- df_myTable
+  #
+  # Table to Excel, Missing
+  df_base <- data.import %>%
+    dplyr::filter(!!as.name(i.flag) == "P") %>%
+    dplyr::group_by(!!as.name(ContData.env$myName.MoDa)
+                    , !!as.name(ContData.env$myName.Yr)) %>%
+    dplyr::summarise(n = dplyr::n(), .groups = "drop")
+  # munge
+  df_base$MonthDay <- sprintf("%04d", df_base$MonthDay)
+  # change class
+  df_base$MonthDay <- as.character(df_base$MonthDay)
+  df_base$Year <- as.character(df_base$Year)
+  df_missing <- df_base %>%
+    dplyr::filter(n != records.expected) %>%
+    dplyr::select(Year, MonthDay, n) %>%
+    dplyr::arrange(Year, MonthDay)
+  name_table4list <- paste0(param_name, "_DaysMissing")
+  ls_excel[[name_table4list]] <- df_missing
 }## IF ~ END
 ```
 
@@ -371,6 +520,48 @@ if(param_boo) {
 
   # Cat the object to make it render in your main document
   cat(res, sep = '\n')
+  
+  #~~~~~~~~~~~~~~~~~
+  # Excel
+  ## variables
+  i <- ContData.env$myNames.DataFields[child_env$p_num]
+  i.flag <- paste(ContData.env$myName.Flag, i, sep = ".")
+  #
+  ## Excel, Flags
+  myTable <- addmargins(table(data.import[, i.flag]
+                           , useNA = "ifany")
+                     , 1)
+  df_myTable <- as.data.frame.matrix(t(myTable))
+  name_table4list <- paste0(param_name, "_Flags")
+  ls_excel[[name_table4list]] <- df_myTable
+  #
+  ## Excel, Year Month
+  myTable <- addmargins(table(data.import[,ContData.env$myName.Yr]
+                          ,data.import[,ContData.env$myName.Mo]
+                          , useNA = "ifany"))
+  df_myTable <- as.data.frame.matrix(myTable, row.names = FALSE)
+  df_myTable <- cbind(rownames(myTable), df_myTable)
+  colnames(df_myTable)[1] <- ""
+  name_table4list <- paste0(param_name, "_Year_Month")
+  ls_excel[[name_table4list]] <- df_myTable
+  #
+  # Table to Excel, Missing
+  df_base <- data.import %>%
+    dplyr::filter(!!as.name(i.flag) == "P") %>%
+    dplyr::group_by(!!as.name(ContData.env$myName.MoDa)
+                    , !!as.name(ContData.env$myName.Yr)) %>%
+    dplyr::summarise(n = dplyr::n(), .groups = "drop")
+  # munge
+  df_base$MonthDay <- sprintf("%04d", df_base$MonthDay)
+  # change class
+  df_base$MonthDay <- as.character(df_base$MonthDay)
+  df_base$Year <- as.character(df_base$Year)
+  df_missing <- df_base %>%
+    dplyr::filter(n != records.expected) %>%
+    dplyr::select(Year, MonthDay, n) %>%
+    dplyr::arrange(Year, MonthDay)
+  name_table4list <- paste0(param_name, "_DaysMissing")
+  ls_excel[[name_table4list]] <- df_missing
 }## IF ~ END
 ```
 
@@ -398,6 +589,48 @@ if(param_boo) {
 
   # Cat the object to make it render in your main document
   cat(res, sep = '\n')
+  
+  #~~~~~~~~~~~~~~~~~
+  # Excel
+  ## variables
+  i <- ContData.env$myNames.DataFields[child_env$p_num]
+  i.flag <- paste(ContData.env$myName.Flag, i, sep = ".")
+  #
+  ## Excel, Flags
+  myTable <- addmargins(table(data.import[, i.flag]
+                           , useNA = "ifany")
+                     , 1)
+  df_myTable <- as.data.frame.matrix(t(myTable))
+  name_table4list <- paste0(param_name, "_Flags")
+  ls_excel[[name_table4list]] <- df_myTable
+  #
+  ## Excel, Year Month
+  myTable <- addmargins(table(data.import[,ContData.env$myName.Yr]
+                          ,data.import[,ContData.env$myName.Mo]
+                          , useNA = "ifany"))
+  df_myTable <- as.data.frame.matrix(myTable, row.names = FALSE)
+  df_myTable <- cbind(rownames(myTable), df_myTable)
+  colnames(df_myTable)[1] <- ""
+  name_table4list <- paste0(param_name, "_Year_Month")
+  ls_excel[[name_table4list]] <- df_myTable
+  #
+  # Table to Excel, Missing
+  df_base <- data.import %>%
+    dplyr::filter(!!as.name(i.flag) == "P") %>%
+    dplyr::group_by(!!as.name(ContData.env$myName.MoDa)
+                    , !!as.name(ContData.env$myName.Yr)) %>%
+    dplyr::summarise(n = dplyr::n(), .groups = "drop")
+  # munge
+  df_base$MonthDay <- sprintf("%04d", df_base$MonthDay)
+  # change class
+  df_base$MonthDay <- as.character(df_base$MonthDay)
+  df_base$Year <- as.character(df_base$Year)
+  df_missing <- df_base %>%
+    dplyr::filter(n != records.expected) %>%
+    dplyr::select(Year, MonthDay, n) %>%
+    dplyr::arrange(Year, MonthDay)
+  name_table4list <- paste0(param_name, "_DaysMissing")
+  ls_excel[[name_table4list]] <- df_missing
 }## IF ~ END
 ```
 
@@ -425,6 +658,48 @@ if(param_boo) {
 
   # Cat the object to make it render in your main document
   cat(res, sep = '\n')
+  
+  #~~~~~~~~~~~~~~~~~
+  # Excel
+  ## variables
+  i <- ContData.env$myNames.DataFields[child_env$p_num]
+  i.flag <- paste(ContData.env$myName.Flag, i, sep = ".")
+  #
+  ## Excel, Flags
+  myTable <- addmargins(table(data.import[, i.flag]
+                           , useNA = "ifany")
+                     , 1)
+  df_myTable <- as.data.frame.matrix(t(myTable))
+  name_table4list <- paste0(param_name, "_Flags")
+  ls_excel[[name_table4list]] <- df_myTable
+  #
+  ## Excel, Year Month
+  myTable <- addmargins(table(data.import[,ContData.env$myName.Yr]
+                          ,data.import[,ContData.env$myName.Mo]
+                          , useNA = "ifany"))
+  df_myTable <- as.data.frame.matrix(myTable, row.names = FALSE)
+  df_myTable <- cbind(rownames(myTable), df_myTable)
+  colnames(df_myTable)[1] <- ""
+  name_table4list <- paste0(param_name, "_Year_Month")
+  ls_excel[[name_table4list]] <- df_myTable
+  #
+  # Table to Excel, Missing
+  df_base <- data.import %>%
+    dplyr::filter(!!as.name(i.flag) == "P") %>%
+    dplyr::group_by(!!as.name(ContData.env$myName.MoDa)
+                    , !!as.name(ContData.env$myName.Yr)) %>%
+    dplyr::summarise(n = dplyr::n(), .groups = "drop")
+  # munge
+  df_base$MonthDay <- sprintf("%04d", df_base$MonthDay)
+  # change class
+  df_base$MonthDay <- as.character(df_base$MonthDay)
+  df_base$Year <- as.character(df_base$Year)
+  df_missing <- df_base %>%
+    dplyr::filter(n != records.expected) %>%
+    dplyr::select(Year, MonthDay, n) %>%
+    dplyr::arrange(Year, MonthDay)
+  name_table4list <- paste0(param_name, "_DaysMissing")
+  ls_excel[[name_table4list]] <- df_missing
 }## IF ~ END
 ```
 
@@ -452,6 +727,48 @@ if(param_boo) {
 
   # Cat the object to make it render in your main document
   cat(res, sep = '\n')
+  
+  #~~~~~~~~~~~~~~~~~
+  # Excel
+  ## variables
+  i <- ContData.env$myNames.DataFields[child_env$p_num]
+  i.flag <- paste(ContData.env$myName.Flag, i, sep = ".")
+  #
+  ## Excel, Flags
+  myTable <- addmargins(table(data.import[, i.flag]
+                           , useNA = "ifany")
+                     , 1)
+  df_myTable <- as.data.frame.matrix(t(myTable))
+  name_table4list <- paste0(param_name, "_Flags")
+  ls_excel[[name_table4list]] <- df_myTable
+  #
+  ## Excel, Year Month
+  myTable <- addmargins(table(data.import[,ContData.env$myName.Yr]
+                          ,data.import[,ContData.env$myName.Mo]
+                          , useNA = "ifany"))
+  df_myTable <- as.data.frame.matrix(myTable, row.names = FALSE)
+  df_myTable <- cbind(rownames(myTable), df_myTable)
+  colnames(df_myTable)[1] <- ""
+  name_table4list <- paste0(param_name, "_Year_Month")
+  ls_excel[[name_table4list]] <- df_myTable
+  #
+  # Table to Excel, Missing
+  df_base <- data.import %>%
+    dplyr::filter(!!as.name(i.flag) == "P") %>%
+    dplyr::group_by(!!as.name(ContData.env$myName.MoDa)
+                    , !!as.name(ContData.env$myName.Yr)) %>%
+    dplyr::summarise(n = dplyr::n(), .groups = "drop")
+  # munge
+  df_base$MonthDay <- sprintf("%04d", df_base$MonthDay)
+  # change class
+  df_base$MonthDay <- as.character(df_base$MonthDay)
+  df_base$Year <- as.character(df_base$Year)
+  df_missing <- df_base %>%
+    dplyr::filter(n != records.expected) %>%
+    dplyr::select(Year, MonthDay, n) %>%
+    dplyr::arrange(Year, MonthDay)
+  name_table4list <- paste0(param_name, "_DaysMissing")
+  ls_excel[[name_table4list]] <- df_missing
 }## IF ~ END
 ```
 
@@ -479,6 +796,48 @@ if(param_boo) {
 
   # Cat the object to make it render in your main document
   cat(res, sep = '\n')
+  
+  #~~~~~~~~~~~~~~~~~
+  # Excel
+  ## variables
+  i <- ContData.env$myNames.DataFields[child_env$p_num]
+  i.flag <- paste(ContData.env$myName.Flag, i, sep = ".")
+  #
+  ## Excel, Flags
+  myTable <- addmargins(table(data.import[, i.flag]
+                           , useNA = "ifany")
+                     , 1)
+  df_myTable <- as.data.frame.matrix(t(myTable))
+  name_table4list <- paste0(param_name, "_Flags")
+  ls_excel[[name_table4list]] <- df_myTable
+  #
+  ## Excel, Year Month
+  myTable <- addmargins(table(data.import[,ContData.env$myName.Yr]
+                          ,data.import[,ContData.env$myName.Mo]
+                          , useNA = "ifany"))
+  df_myTable <- as.data.frame.matrix(myTable, row.names = FALSE)
+  df_myTable <- cbind(rownames(myTable), df_myTable)
+  colnames(df_myTable)[1] <- ""
+  name_table4list <- paste0(param_name, "_Year_Month")
+  ls_excel[[name_table4list]] <- df_myTable
+  #
+  # Table to Excel, Missing
+  df_base <- data.import %>%
+    dplyr::filter(!!as.name(i.flag) == "P") %>%
+    dplyr::group_by(!!as.name(ContData.env$myName.MoDa)
+                    , !!as.name(ContData.env$myName.Yr)) %>%
+    dplyr::summarise(n = dplyr::n(), .groups = "drop")
+  # munge
+  df_base$MonthDay <- sprintf("%04d", df_base$MonthDay)
+  # change class
+  df_base$MonthDay <- as.character(df_base$MonthDay)
+  df_base$Year <- as.character(df_base$Year)
+  df_missing <- df_base %>%
+    dplyr::filter(n != records.expected) %>%
+    dplyr::select(Year, MonthDay, n) %>%
+    dplyr::arrange(Year, MonthDay)
+  name_table4list <- paste0(param_name, "_DaysMissing")
+  ls_excel[[name_table4list]] <- df_missing
 }## IF ~ END
 ```
 
@@ -506,6 +865,48 @@ if(param_boo) {
 
   # Cat the object to make it render in your main document
   cat(res, sep = '\n')
+  
+  #~~~~~~~~~~~~~~~~~
+  # Excel
+  ## variables
+  i <- ContData.env$myNames.DataFields[child_env$p_num]
+  i.flag <- paste(ContData.env$myName.Flag, i, sep = ".")
+  #
+  ## Excel, Flags
+  myTable <- addmargins(table(data.import[, i.flag]
+                           , useNA = "ifany")
+                     , 1)
+  df_myTable <- as.data.frame.matrix(t(myTable))
+  name_table4list <- paste0(param_name, "_Flags")
+  ls_excel[[name_table4list]] <- df_myTable
+  #
+  ## Excel, Year Month
+  myTable <- addmargins(table(data.import[,ContData.env$myName.Yr]
+                          ,data.import[,ContData.env$myName.Mo]
+                          , useNA = "ifany"))
+  df_myTable <- as.data.frame.matrix(myTable, row.names = FALSE)
+  df_myTable <- cbind(rownames(myTable), df_myTable)
+  colnames(df_myTable)[1] <- ""
+  name_table4list <- paste0(param_name, "_Year_Month")
+  ls_excel[[name_table4list]] <- df_myTable
+  #
+  # Table to Excel, Missing
+  df_base <- data.import %>%
+    dplyr::filter(!!as.name(i.flag) == "P") %>%
+    dplyr::group_by(!!as.name(ContData.env$myName.MoDa)
+                    , !!as.name(ContData.env$myName.Yr)) %>%
+    dplyr::summarise(n = dplyr::n(), .groups = "drop")
+  # munge
+  df_base$MonthDay <- sprintf("%04d", df_base$MonthDay)
+  # change class
+  df_base$MonthDay <- as.character(df_base$MonthDay)
+  df_base$Year <- as.character(df_base$Year)
+  df_missing <- df_base %>%
+    dplyr::filter(n != records.expected) %>%
+    dplyr::select(Year, MonthDay, n) %>%
+    dplyr::arrange(Year, MonthDay)
+  name_table4list <- paste0(param_name, "_DaysMissing")
+  ls_excel[[name_table4list]] <- df_missing
 }## IF ~ END
 ```
 
@@ -533,6 +934,48 @@ if(param_boo) {
 
   # Cat the object to make it render in your main document
   cat(res, sep = '\n')
+  
+  #~~~~~~~~~~~~~~~~~
+  # Excel
+  ## variables
+  i <- ContData.env$myNames.DataFields[child_env$p_num]
+  i.flag <- paste(ContData.env$myName.Flag, i, sep = ".")
+  #
+  ## Excel, Flags
+  myTable <- addmargins(table(data.import[, i.flag]
+                           , useNA = "ifany")
+                     , 1)
+  df_myTable <- as.data.frame.matrix(t(myTable))
+  name_table4list <- paste0(param_name, "_Flags")
+  ls_excel[[name_table4list]] <- df_myTable
+  #
+  ## Excel, Year Month
+  myTable <- addmargins(table(data.import[,ContData.env$myName.Yr]
+                          ,data.import[,ContData.env$myName.Mo]
+                          , useNA = "ifany"))
+  df_myTable <- as.data.frame.matrix(myTable, row.names = FALSE)
+  df_myTable <- cbind(rownames(myTable), df_myTable)
+  colnames(df_myTable)[1] <- ""
+  name_table4list <- paste0(param_name, "_Year_Month")
+  ls_excel[[name_table4list]] <- df_myTable
+  #
+  # Table to Excel, Missing
+  df_base <- data.import %>%
+    dplyr::filter(!!as.name(i.flag) == "P") %>%
+    dplyr::group_by(!!as.name(ContData.env$myName.MoDa)
+                    , !!as.name(ContData.env$myName.Yr)) %>%
+    dplyr::summarise(n = dplyr::n(), .groups = "drop")
+  # munge
+  df_base$MonthDay <- sprintf("%04d", df_base$MonthDay)
+  # change class
+  df_base$MonthDay <- as.character(df_base$MonthDay)
+  df_base$Year <- as.character(df_base$Year)
+  df_missing <- df_base %>%
+    dplyr::filter(n != records.expected) %>%
+    dplyr::select(Year, MonthDay, n) %>%
+    dplyr::arrange(Year, MonthDay)
+  name_table4list <- paste0(param_name, "_DaysMissing")
+  ls_excel[[name_table4list]] <- df_missing
 }## IF ~ END
 ```
 
@@ -560,6 +1003,48 @@ if(param_boo) {
 
   # Cat the object to make it render in your main document
   cat(res, sep = '\n')
+  
+  #~~~~~~~~~~~~~~~~~
+  # Excel
+  ## variables
+  i <- ContData.env$myNames.DataFields[child_env$p_num]
+  i.flag <- paste(ContData.env$myName.Flag, i, sep = ".")
+  #
+  ## Excel, Flags
+  myTable <- addmargins(table(data.import[, i.flag]
+                           , useNA = "ifany")
+                     , 1)
+  df_myTable <- as.data.frame.matrix(t(myTable))
+  name_table4list <- paste0(param_name, "_Flags")
+  ls_excel[[name_table4list]] <- df_myTable
+  #
+  ## Excel, Year Month
+  myTable <- addmargins(table(data.import[,ContData.env$myName.Yr]
+                          ,data.import[,ContData.env$myName.Mo]
+                          , useNA = "ifany"))
+  df_myTable <- as.data.frame.matrix(myTable, row.names = FALSE)
+  df_myTable <- cbind(rownames(myTable), df_myTable)
+  colnames(df_myTable)[1] <- ""
+  name_table4list <- paste0(param_name, "_Year_Month")
+  ls_excel[[name_table4list]] <- df_myTable
+  #
+  # Table to Excel, Missing
+  df_base <- data.import %>%
+    dplyr::filter(!!as.name(i.flag) == "P") %>%
+    dplyr::group_by(!!as.name(ContData.env$myName.MoDa)
+                    , !!as.name(ContData.env$myName.Yr)) %>%
+    dplyr::summarise(n = dplyr::n(), .groups = "drop")
+  # munge
+  df_base$MonthDay <- sprintf("%04d", df_base$MonthDay)
+  # change class
+  df_base$MonthDay <- as.character(df_base$MonthDay)
+  df_base$Year <- as.character(df_base$Year)
+  df_missing <- df_base %>%
+    dplyr::filter(n != records.expected) %>%
+    dplyr::select(Year, MonthDay, n) %>%
+    dplyr::arrange(Year, MonthDay)
+  name_table4list <- paste0(param_name, "_DaysMissing")
+  ls_excel[[name_table4list]] <- df_missing
 }## IF ~ END
 ```
 
@@ -587,6 +1072,48 @@ if(param_boo) {
 
   # Cat the object to make it render in your main document
   cat(res, sep = '\n')
+  
+  #~~~~~~~~~~~~~~~~~
+  # Excel
+  ## variables
+  i <- ContData.env$myNames.DataFields[child_env$p_num]
+  i.flag <- paste(ContData.env$myName.Flag, i, sep = ".")
+  #
+  ## Excel, Flags
+  myTable <- addmargins(table(data.import[, i.flag]
+                           , useNA = "ifany")
+                     , 1)
+  df_myTable <- as.data.frame.matrix(t(myTable))
+  name_table4list <- paste0(param_name, "_Flags")
+  ls_excel[[name_table4list]] <- df_myTable
+  #
+  ## Excel, Year Month
+  myTable <- addmargins(table(data.import[,ContData.env$myName.Yr]
+                          ,data.import[,ContData.env$myName.Mo]
+                          , useNA = "ifany"))
+  df_myTable <- as.data.frame.matrix(myTable, row.names = FALSE)
+  df_myTable <- cbind(rownames(myTable), df_myTable)
+  colnames(df_myTable)[1] <- ""
+  name_table4list <- paste0(param_name, "_Year_Month")
+  ls_excel[[name_table4list]] <- df_myTable
+  #
+  # Table to Excel, Missing
+  df_base <- data.import %>%
+    dplyr::filter(!!as.name(i.flag) == "P") %>%
+    dplyr::group_by(!!as.name(ContData.env$myName.MoDa)
+                    , !!as.name(ContData.env$myName.Yr)) %>%
+    dplyr::summarise(n = dplyr::n(), .groups = "drop")
+  # munge
+  df_base$MonthDay <- sprintf("%04d", df_base$MonthDay)
+  # change class
+  df_base$MonthDay <- as.character(df_base$MonthDay)
+  df_base$Year <- as.character(df_base$Year)
+  df_missing <- df_base %>%
+    dplyr::filter(n != records.expected) %>%
+    dplyr::select(Year, MonthDay, n) %>%
+    dplyr::arrange(Year, MonthDay)
+  name_table4list <- paste0(param_name, "_DaysMissing")
+  ls_excel[[name_table4list]] <- df_missing
 }## IF ~ END
 ```
 
@@ -614,6 +1141,48 @@ if(param_boo) {
 
   # Cat the object to make it render in your main document
   cat(res, sep = '\n')
+  
+  #~~~~~~~~~~~~~~~~~
+  # Excel
+  ## variables
+  i <- ContData.env$myNames.DataFields[child_env$p_num]
+  i.flag <- paste(ContData.env$myName.Flag, i, sep = ".")
+  #
+  ## Excel, Flags
+  myTable <- addmargins(table(data.import[, i.flag]
+                           , useNA = "ifany")
+                     , 1)
+  df_myTable <- as.data.frame.matrix(t(myTable))
+  name_table4list <- paste0(param_name, "_Flags")
+  ls_excel[[name_table4list]] <- df_myTable
+  #
+  ## Excel, Year Month
+  myTable <- addmargins(table(data.import[,ContData.env$myName.Yr]
+                          ,data.import[,ContData.env$myName.Mo]
+                          , useNA = "ifany"))
+  df_myTable <- as.data.frame.matrix(myTable, row.names = FALSE)
+  df_myTable <- cbind(rownames(myTable), df_myTable)
+  colnames(df_myTable)[1] <- ""
+  name_table4list <- paste0(param_name, "_Year_Month")
+  ls_excel[[name_table4list]] <- df_myTable
+  #
+  # Table to Excel, Missing
+  df_base <- data.import %>%
+    dplyr::filter(!!as.name(i.flag) == "P") %>%
+    dplyr::group_by(!!as.name(ContData.env$myName.MoDa)
+                    , !!as.name(ContData.env$myName.Yr)) %>%
+    dplyr::summarise(n = dplyr::n(), .groups = "drop")
+  # munge
+  df_base$MonthDay <- sprintf("%04d", df_base$MonthDay)
+  # change class
+  df_base$MonthDay <- as.character(df_base$MonthDay)
+  df_base$Year <- as.character(df_base$Year)
+  df_missing <- df_base %>%
+    dplyr::filter(n != records.expected) %>%
+    dplyr::select(Year, MonthDay, n) %>%
+    dplyr::arrange(Year, MonthDay)
+  name_table4list <- paste0(param_name, "_DaysMissing")
+  ls_excel[[name_table4list]] <- df_missing
 }## IF ~ END
 ```
 
@@ -641,6 +1210,48 @@ if(param_boo) {
 
   # Cat the object to make it render in your main document
   cat(res, sep = '\n')
+  
+  #~~~~~~~~~~~~~~~~~
+  # Excel
+  ## variables
+  i <- ContData.env$myNames.DataFields[child_env$p_num]
+  i.flag <- paste(ContData.env$myName.Flag, i, sep = ".")
+  #
+  ## Excel, Flags
+  myTable <- addmargins(table(data.import[, i.flag]
+                           , useNA = "ifany")
+                     , 1)
+  df_myTable <- as.data.frame.matrix(t(myTable))
+  name_table4list <- paste0(param_name, "_Flags")
+  ls_excel[[name_table4list]] <- df_myTable
+  #
+  ## Excel, Year Month
+  myTable <- addmargins(table(data.import[,ContData.env$myName.Yr]
+                          ,data.import[,ContData.env$myName.Mo]
+                          , useNA = "ifany"))
+  df_myTable <- as.data.frame.matrix(myTable, row.names = FALSE)
+  df_myTable <- cbind(rownames(myTable), df_myTable)
+  colnames(df_myTable)[1] <- ""
+  name_table4list <- paste0(param_name, "_Year_Month")
+  ls_excel[[name_table4list]] <- df_myTable
+  #
+  # Table to Excel, Missing
+  df_base <- data.import %>%
+    dplyr::filter(!!as.name(i.flag) == "P") %>%
+    dplyr::group_by(!!as.name(ContData.env$myName.MoDa)
+                    , !!as.name(ContData.env$myName.Yr)) %>%
+    dplyr::summarise(n = dplyr::n(), .groups = "drop")
+  # munge
+  df_base$MonthDay <- sprintf("%04d", df_base$MonthDay)
+  # change class
+  df_base$MonthDay <- as.character(df_base$MonthDay)
+  df_base$Year <- as.character(df_base$Year)
+  df_missing <- df_base %>%
+    dplyr::filter(n != records.expected) %>%
+    dplyr::select(Year, MonthDay, n) %>%
+    dplyr::arrange(Year, MonthDay)
+  name_table4list <- paste0(param_name, "_DaysMissing")
+  ls_excel[[name_table4list]] <- df_missing
 }## IF ~ END
 ```
 
@@ -668,10 +1279,92 @@ if(param_boo) {
 
   # Cat the object to make it render in your main document
   cat(res, sep = '\n')
+  
+  #~~~~~~~~~~~~~~~~~
+  # Excel
+  ## variables
+  i <- ContData.env$myNames.DataFields[child_env$p_num]
+  i.flag <- paste(ContData.env$myName.Flag, i, sep = ".")
+  #
+  ## Excel, Flags
+  myTable <- addmargins(table(data.import[, i.flag]
+                           , useNA = "ifany")
+                     , 1)
+  df_myTable <- as.data.frame.matrix(t(myTable))
+  name_table4list <- paste0(param_name, "_Flags")
+  ls_excel[[name_table4list]] <- df_myTable
+  #
+  ## Excel, Year Month
+  myTable <- addmargins(table(data.import[,ContData.env$myName.Yr]
+                          ,data.import[,ContData.env$myName.Mo]
+                          , useNA = "ifany"))
+  df_myTable <- as.data.frame.matrix(myTable, row.names = FALSE)
+  df_myTable <- cbind(rownames(myTable), df_myTable)
+  colnames(df_myTable)[1] <- ""
+  name_table4list <- paste0(param_name, "_Year_Month")
+  ls_excel[[name_table4list]] <- df_myTable
+  #
+  # Table to Excel, Missing
+  df_base <- data.import %>%
+    dplyr::filter(!!as.name(i.flag) == "P") %>%
+    dplyr::group_by(!!as.name(ContData.env$myName.MoDa)
+                    , !!as.name(ContData.env$myName.Yr)) %>%
+    dplyr::summarise(n = dplyr::n(), .groups = "drop")
+  # munge
+  df_base$MonthDay <- sprintf("%04d", df_base$MonthDay)
+  # change class
+  df_base$MonthDay <- as.character(df_base$MonthDay)
+  df_base$Year <- as.character(df_base$Year)
+  df_missing <- df_base %>%
+    dplyr::filter(n != records.expected) %>%
+    dplyr::select(Year, MonthDay, n) %>%
+    dplyr::arrange(Year, MonthDay)
+  name_table4list <- paste0(param_name, "_DaysMissing")
+  ls_excel[[name_table4list]] <- df_missing
 }## IF ~ END
 ```
 
 
+```{r Excel}
+# Create Excel Output
+
+## FileName
+fn_out_xlsx <- paste0(tools::file_path_sans_ext(output_file), ".xlsx")
+path_out_xlsx <- file.path(output_dir, fn_out_xlsx)
+
+## Excel, NOTES
+nrow_NOTES   <- 6
+#NOTES       <- data.frame(matrix(ncol = 3, nrow = nrow_NOTES))
+NOTES        <- data.frame(matrix(ncol = 3))
+NOTES[, 2]   <- writexl::xl_formula('=""') # set column as formula
+NOTES[, 3]   <- writexl::xl_formula('=""') # set column as formula
+NOTES[1, 1]  <- "ContDataSumViz, Missing Data"
+NOTES[3, 1]  <- "Path and FileName"
+NOTES[3, 2]  <- "=LEFT(@CELL(\"filename\",A1),FIND(\"]\",@CELL(\"filename\",A1)))"
+NOTES[4, 1]  <- "FileName"
+NOTES[4, 2]  <- "=MID(@CELL(\"filename\",B8),FIND(\"[\",@CELL(\"filename\",B8)),
+          (FIND(\"]\",@CELL(\"filename\",B8))-FIND(\"[\",@CELL(\"filename\",B8)))+1)"
+
+NOTES[6, 1] <- "Date"
+NOTES[6, 2] <- paste0('="', as.character(Sys.Date()), '"')
+
+# Remove Formula
+NOTES[1, 2:3] <- NA
+
+#ls_excel <- list()
+
+
+# Update NOTES
+ls_excel[["NOTES"]] <- NOTES
+
+# Save
+  writexl::write_xlsx(ls_excel
+                     , path = path_out_xlsx
+                     , col_names = TRUE
+                     , format_headers = TRUE
+                     , use_zip64 = FALSE)
+
+```
 
 
 

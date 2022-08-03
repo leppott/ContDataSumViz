@@ -91,6 +91,7 @@ myPkg <- "ContDataSumViz"
 library(myPkg, character.only = TRUE)
 help(package=(myPkg))
 library(testthat)
+shell.exec(tempdir())
 #
 citation(myPkg)
 ```

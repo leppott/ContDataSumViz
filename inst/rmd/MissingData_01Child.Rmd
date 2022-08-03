@@ -85,6 +85,9 @@ cat("\n\n")
 
 # Dates, Missing Data
 
+cat("The table below has all the sample dates with a number of records different
+from the expected (", records.expected, "). 'N' is total number of records for 
+the day.")
 # table of dates with missing data
 df_missing <- df_base %>%
   dplyr::filter(n != records.expected) %>%

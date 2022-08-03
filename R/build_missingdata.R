@@ -126,7 +126,7 @@ build_missingdata <- function(dir_data = tempdir()
   file_datetime <- format(Sys.time(), '%Y%m%d_%H%M%S')
   output_file <- file.path(paste0("MissingData_"
                                   , file_datetime
-                                  , "_."
+                                  , "."
                                   , output_format))
 
 

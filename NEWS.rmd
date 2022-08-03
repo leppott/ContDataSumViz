@@ -18,6 +18,10 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.1.0.9011 (2022-08-03)
+
+* refactor: Update missing data report, Issue #4
+
 ## Changes in Version 0.1.0.9010 (2022-07-28)
 
 * refactor: Update missing data report, Issue #4
