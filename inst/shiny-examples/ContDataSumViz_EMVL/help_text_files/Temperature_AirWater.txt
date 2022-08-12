@@ -1,0 +1,18 @@
+Temperature - Air vs Water
+
+Because solar radiation affects both air and water temperature, the two parameters are typically closely correlated and many statistical models use changes in air temperature to explain variances in stream temperatures (Caissie 2006). 
+This relationship can be quantified as the slope of the linear regression line between air and water temperature and indicates how sensitive a given stream is to changes in water temperature due to changes in air temperature (Kelleher et al. 2012). 
+
+We give users the option of excluding air temperatures <0°C because 0 is generally the point at which additional cooling of water forms ice, causing the linear air-water temperature relationship to break down (Kelleher et al. 2012). 
+This relationship also tends to break down at high temperatures (above ~20°C) (Mohseni and Stefan 1999). In the future, we may add in an option to exclude high-end temperatures and to calculate nonlinear regression equations. 
+
+For more information, see Kelleher et al. (2012).
+
+
+Citation:
+Caissie, D. 2006. The Thermal Regime of Rivers: A Review. Freshwater Biology 51 (8): 1389–406. https://doi.org/10.1111/j.1365-2427.2006.01597.x.
+
+Kelleher, Christa & Wagener, Thorsten & Gooseff, Michael & Mcglynn, Brian & McGuire, Kevin & Marshall Price, Lucy. 2012. Investigating Controls on the Thermal Sensitivity of Pennsylvania Streams. Hydrological Processes. 26. 771 - 785. 10.1002/hyp.8186.
+
+Mohseni, O., and H.G. Stefan. 1999. Stream Temperature/Air Temperature Relationship: A Physical Interpretation. Journal of Hydrology 218 (3–4): 128–41. https://doi.org/doi:10.1016/s0022-1694(99)00034-7.
+

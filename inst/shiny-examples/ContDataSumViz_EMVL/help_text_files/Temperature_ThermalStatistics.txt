@@ -1,0 +1,8 @@
+Temperature – Thermal Statistics
+
+The output from this Shiny app is derived from the StreamThermal R package on GitHub (https://github.com/tsangyp/StreamThermal). 
+It generates over 200 different thermal metrics that cover five categories of stream thermal regimes: magnitude, variability, frequency, timing, and rate of change.
+
+Citation:
+Tsang, Yin-Phan & Infante, Dana & Stewart, Jana & Wang, Lizhu & Tingly, Ralph & Thornbrugh, Darren & Cooper, Arthur & Daniel, Wesley. 2016. 
+StreamThermal: A Software Package for Calculating Thermal Metrics from Stream Temperature Data. Fisheries. 41. 548-554. 10.1080/03632415.2016.1210517.

@@ -4,7 +4,10 @@
 \alias{runShiny}
 \title{run Shiny Example}
 \usage{
-runShiny()
+runShiny(shinyappname = "ContDataSumViz_EMVL")
+}
+\arguments{
+\item{shinyappname}{Shiny appplication name, default = ContDataSumViz_EMVL}
 }
 \description{
 Launches Shiny app for ContDataSumViz package.
@@ -18,7 +21,11 @@ https://tetratech-wtr-wne.shinyapps.io/ContDataSumViz
 }
 \examples{
 \dontrun{
-# Run Function
+# Run Function (default EMVL)
 runShiny()
+
+# Shiny, test
+runShiny("ContDataSumViz_test")
+
 }
 }

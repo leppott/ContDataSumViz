@@ -8,17 +8,23 @@
 #' The Shiny app is online at:
 #' https://tetratech-wtr-wne.shinyapps.io/ContDataSumViz
 #'
+#' @param shinyappname Shiny appplication name, default = ContDataSumViz_EMVL
+#'
 #' @examples
 #' \dontrun{
-#' # Run Function
+#' # Run Function (default EMVL)
 #' runShiny()
+#'
+#' # Shiny, test
+#' runShiny("ContDataSumViz_test")
+#'
 #' }
 #
 #' @export
-runShiny <- function(){##FUNCTION.START
+runShiny <- function(shinyappname = "ContDataSumViz_EMVL"){##FUNCTION.START
   #
   appDir <- system.file("shiny-examples"
-                        , "ContDataSumViz"
+                        , shinyappname
                         , package = "ContDataSumViz")
   #
   if (appDir == "") {

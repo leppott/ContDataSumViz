@@ -1,0 +1,22 @@
+Temperature – Thermal classification
+
+COMING LATER ...
+
+When resources permit, we will add in functions that assign sites to thermal classes based on the national classification schemes in Maheu et al. (2015) and McManamay & DeRolph (2018). 
+
+The Maheu et al. (2015) scheme has six annual thermal regime classes: stable cold, stable cool, variable cold, variable cool, highly variable cool and variable warm. 
+McManamay & DeRolph (2018) used two schemes: one based on Maheu et al. (2015) and the other based on the following ranges of mean July-August stream temperature:
+  Very cold <10°C
+  Cold 10-15°C
+  Cold-cool 15-18°C
+  Cool 18-21°C
+  Cool-warm 21-24°C
+  Warm >24°C
+
+Citations:
+Maheu, Audrey & Poff, N. & St-Hilaire, André. 2015. A Classification of Stream Water Temperature Regimes in the Conterminous USA. River Research and Applications. 32. 10.1002/rra.2906.
+
+McKay, L., Bondelid, T., Dewald, T., Johnston, J., Moore, R., Reah, A., 2012. NHDPlus Version 2: User Guide. U.S. Environmental Protection Agency. https://nhdplus.com/NHDPlus/NHDPlusV2_home.php
+
+McManamay, R. & C.A. DeRolph. 2019. A stream classification system for the conterminous United States. Sci Data 6, 190017. https://doi.org/10.1038/sdata.2019.17
+

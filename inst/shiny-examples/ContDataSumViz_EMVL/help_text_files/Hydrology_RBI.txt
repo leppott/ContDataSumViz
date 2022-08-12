@@ -1,0 +1,15 @@
+The Richards-Baker flashiness index (RBI) (Baker et al. 2004) reflects the frequency and rapidity of short-term changes in streamflow. 
+It measures oscillations in discharge relative to total discharge, such that flashier streams receive higher scores. 
+Results are scaled from 0 to 1 (most flashy). 
+The calculation is based on mean daily flows and is calculated by dividing the sum of the absolute values of day-to-day changes in mean daily flow by total discharge during the specified time period.
+
+The Shiny app calculation is based on mean daily values and calendar year. Those settings can be changed if you are using the R package instead of Shiny app. 
+For more information, contact Erik Leppo (Erik.Leppo@tetratech.com).
+
+The RBI is intended to be used with discharge data but we’re experimenting with using it with sensor depth and water level data as well (since discharge data aren’t available for some of the RMN sites).
+
+
+Citation:
+Baker, D.B., Richards, R.P., Loftus, T.T. and J.K. Kramer. 2004. A New Flashiness Index: Characteristics and Applications to Midwestern Rivers and Streams. 
+Journal of the American Water Resources Association 40(2): 503-522. https://doi.org/10.1111/j.1752-1688.2004.tb01046.x
+

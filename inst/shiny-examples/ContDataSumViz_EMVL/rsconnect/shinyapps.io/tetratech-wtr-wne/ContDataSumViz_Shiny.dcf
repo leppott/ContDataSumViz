@@ -1,0 +1,14 @@
+name: ContDataSumViz_Shiny
+title: ContDataSumViz_Shiny
+username:
+account: tetratech-wtr-wne
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 6342532
+bundleId: 6196038
+url: https://tetratech-wtr-wne.shinyapps.io/ContDataSumViz_Shiny/
+when: 1660322859.04415
+lastSyncTime: 1660322859.04419
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: LOG.Items.20220809.142859.tab|LOG.Items.20220809.142925.tab|LOG.Items.20220809.142942.tab

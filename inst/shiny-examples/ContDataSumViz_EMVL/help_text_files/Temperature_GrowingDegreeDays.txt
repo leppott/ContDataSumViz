@@ -1,0 +1,9 @@
+Temperature – Growing Degree Days
+
+COMING LATER…
+
+When resources permit, we will add in a function to calculate Growing Degree Days (GDD), which are used to estimate the growth and development of insects during the growing season. 
+The basic concept is that development will only occur if the temperature exceeds some minimum development threshold, or base temperature, which varies depending on the type of organisms being studied. 
+
+Although we aren’t able to provide a GDD calculator at this time, one of the RMN partners, Tim Martin from Minnesota DNR (tim.martin@state.mn.us), 
+has generously shared code that people with R software can use in the meantime. Click below to download the R script.

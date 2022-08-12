@@ -4,9 +4,19 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2022-08-03 15:06:41
+    #> Last Update: 2022-08-12 13:12:36
 
 # Version History
+
+## Changes in Version 0.1.0.9012 (2022-08-12)
+
+-   feature: Update shiny with EMVL version
+    -   Made changes to run on Linux server (ShinyApps.io)
+    -   Minor edits in style (e.g., returns and outlining)
+    -   Minor edits for text for boxes
+-   refactor: Rename original shiny ‘test’
+-   refactor: Update runShiny function to handle two app versions
+    -   Update example
 
 ## Changes in Version 0.1.0.9011 (2022-08-03)
 
