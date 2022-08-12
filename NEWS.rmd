@@ -18,6 +18,10 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.1.0.9013 (2022-08-12)
+
+* fix: Add Shiny (EMVL) required packages to DESCRIPTION
+
 ## Changes in Version 0.1.0.9012 (2022-08-12)
 
 * feature: Update shiny with EMVL version

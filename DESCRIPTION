@@ -1,7 +1,7 @@
 Package: ContDataSumViz
 Type: Package
 Title: Create Visualizations of Continuous Monitoring Data
-Version: 0.1.0.9012
+Version: 0.1.0.9013
 Author: c(
 	person("Erik W.", "Leppo", email="Erik.Leppo@tetratech.com", role=c("aut","cre")), 
 	person("Jen", "Stamp", role="ctb"))
@@ -17,14 +17,41 @@ RoxygenNote: 7.2.0
 Suggests:
     DT,
     ggplot2,
+    ggthemes,
     plotly,
     readxl,
     shiny,
+    shinyjs,
+    shinyalert,
+    shinythemes,
     shinyshiny,
     shinydashboard,
     shinydashboardPlus,
-    shinyjs,
     shinyWidgets,
+    shinycssloaders,
+    shinyBS,
+    shinyFiles,
     testthat,
     dplyr,
-    tidyr
+    tidyr,
+    readxl,
+    writexl,
+    data.table,
+    tidyverse,
+    tibbletime,
+    conflicted,
+    dataRetrieval,
+    doBy,
+    knitr,
+    htmltools,
+    rmarkdown,
+    highr,
+    survival,
+    zip,
+    reshape2,
+    XLConnect,
+    ContDataQC,
+    ContDataSumViz,
+    StreamThermal,
+    IHA
+    
