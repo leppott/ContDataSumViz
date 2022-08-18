@@ -1,0 +1,13 @@
+name: ContDataSumViz_EMVL_global
+title: ContDataSumViz_EMVL_global
+username:
+account: tetratech-wtr-wne
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 6798032
+bundleId: 6210203
+url: https://tetratech-wtr-wne.shinyapps.io/ContDataSumViz_EMVL_global/
+when: 1660740398.23893
+lastSyncTime: 1660740398.23894
+asMultiple: FALSE
+asStatic: FALSE

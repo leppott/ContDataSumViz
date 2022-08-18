@@ -1,0 +1,13 @@
+name: ContDataSumViz_EMVL_Aug_Slim
+title: ContDataSumViz_EMVL_Aug_Slim
+username:
+account: tetratech-wtr-wne
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 6788404
+bundleId: 6203868
+url: https://tetratech-wtr-wne.shinyapps.io/ContDataSumViz_EMVL_Aug_Slim/
+when: 1660592261.38063
+lastSyncTime: 1660592261.38064
+asMultiple: FALSE
+asStatic: FALSE

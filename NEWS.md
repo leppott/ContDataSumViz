@@ -4,9 +4,19 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2022-08-12 13:12:36
+    #> Last Update: 2022-08-18 16:17:06
 
 # Version History
+
+## Changes in Version 0.1.0.9014 (2022-08-18)
+
+-   feature: Add slim version of Shiny app that works on server
+    -   Retained full version that only runs on PC
+    -   Added example to runShiny function
+
+## Changes in Version 0.1.0.9013 (2022-08-12)
+
+-   fix: Add Shiny (EMVL) required packages to DESCRIPTION
 
 ## Changes in Version 0.1.0.9012 (2022-08-12)
 
@@ -20,23 +30,23 @@ NEWS
 
 ## Changes in Version 0.1.0.9011 (2022-08-03)
 
--   refactor: Update missing data report, Issue #4
+-   refactor: Update missing data report, Issue \#4
 
 ## Changes in Version 0.1.0.9010 (2022-07-28)
 
--   refactor: Update missing data report, Issue #4
+-   refactor: Update missing data report, Issue \#4
 
 ## Changes in Version 0.1.0.9009 (2022-07-27)
 
--   feature: Add missing data report function, Issue #4
+-   feature: Add missing data report function, Issue \#4
 
 ## Changes in Version 0.1.0.9008 (2022-07-12)
 
--   fix: Update merge statement in build_summary, Issue #3
+-   fix: Update merge statement in build_summary, Issue \#3
 
 ## Changes in Version 0.1.0.9007 (2022-07-12)
 
--   partial update with site summary report, Issue #2
+-   partial update with site summary report, Issue \#2
 
 ## Changes in Version 0.1.0.9006 (2022-02-04)
 
@@ -45,7 +55,7 @@ NEWS
 
 ## Changes in Version 0.1.0.9006 (2022-02-04)
 
--   feature: build_summary() for creating site summary report, Issue #2
+-   feature: build_summary() for creating site summary report, Issue \#2
     -   Function
     -   RMD file
     -   readxl package to DESCRIPTION

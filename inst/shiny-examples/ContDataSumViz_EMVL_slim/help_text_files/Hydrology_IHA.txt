@@ -1,0 +1,27 @@
+Hydrology-IHA
+
+Indicators of Hydrologic Alteration (IHA) software was developed by scientists at the Nature Conservancy to facilitate hydrologic analysis in an ecologically-meaningful manner (Richter et al. 1996). 
+
+The output from this Shiny app is derived from the IHA R package on GitHub (https://github.com/jasonelaw/iha). It produces five groups of statistical outputs, with results grouped by calendar year:
+1.	Monthly mean
+2.	Twelve magnitude/duration statistics (1-, 3-, 7-, 30- and 90-day min/max, zero flow days, base index)
+3.	Julian day of annual minimum and maximum discharge
+4.	Number and length of high and low pulses
+5.	Rate and frequency of water condition changes (rise rate, fall rate, reversals)
+
+The statistics are intended to be used with discharge data but we’re experimenting with using the statistics with sensor depth and water level data as well (since discharge data aren’t available for some of the RMN sites).
+
+Citation:
+Richter, B.D., Baumgartner, J.V., Powell, J. and D.P. Braun. 1996. A Method for Assessing Hydrologic Alteration within Ecosystems. Conservation Biology 10(4): 1163-1174. Available online: https://www.waterboards.ca.gov/waterrights/water_issues/programs/bay_delta/docs/cmnt081712/sldmwa/richteretal1996.pdf
+
+
+Additional R packages that may be of interest for working with hydrologic data: 
+
+Environmental Flow Components (EFC) statistics (the IHA R package does not provide these) -
+https://github.com/mkoohafkan/flowregime/
+
+Low flow statistics (https://pubs.usgs.gov/sir/2008/5126/section3.html)
+https://github.com/cran/lfstat
+
+USGS EGRET package (https://pubs.usgs.gov/tm/04/a10/)
+https://cran.r-project.org/web/packages/EGRET/index.html

@@ -1,0 +1,13 @@
+name: ContDataSumViz_EMVL_slim_DE1_TR
+title: ContDataSumViz_EMVL_slim_DE1_TR
+username:
+account: tetratech-wtr-wne
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 6798368
+bundleId: 6210423
+url: https://tetratech-wtr-wne.shinyapps.io/ContDataSumViz_EMVL_slim_DE1_TR/
+when: 1660744632.8006
+lastSyncTime: 1660744632.80061
+asMultiple: FALSE
+asStatic: FALSE

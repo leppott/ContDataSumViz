@@ -18,6 +18,12 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.1.0.9014 (2022-08-18)
+
+* feature: Add slim version of Shiny app that works on server
+    + Retained full version that only runs on PC
+    + Added example to runShiny function
+
 ## Changes in Version 0.1.0.9013 (2022-08-12)
 
 * fix: Add Shiny (EMVL) required packages to DESCRIPTION

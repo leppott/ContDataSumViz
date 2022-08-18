@@ -21,8 +21,11 @@ https://tetratech-wtr-wne.shinyapps.io/ContDataSumViz
 }
 \examples{
 \dontrun{
-# Run Function (default EMVL)
+# Run Function (full EMVL version, default)
 runShiny()
+
+# Shiny, EMVL slim server version
+runShiny("ContDataSumViz_EMVL_slim")
 
 # Shiny, test
 runShiny("ContDataSumViz_test")

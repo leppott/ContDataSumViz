@@ -1,0 +1,43 @@
+---
+title: "Site Summary"
+date: "`r format(Sys.time(), '%Y-%m-%d %H:%M:%S')`"
+output: 
+  html_document:
+    toc: yes
+    toc_depth: 3
+    toc_float: no
+  word_document:
+    toc: yes
+  pdf_document:
+    toc: yes
+    toc_depth: 3
+    fig_caption: true 
+runtime: shiny        
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,results = 'asis',warning= FALSE)
+```
+
+```{r head}
+cat(paste0("**Input file**\n\n"
+           ,loaded_data$name
+           ,"\n\n"))
+
+cat(paste0("**Site ID**\n\n"
+           ,loaded_data$siteID
+           ,"\n\n"))
+```
+
+## Including tables
+
+The following tables were created in this analysis session:
+
+```{r body}
+cat("**Metadata table**\n\n")
+saveToReport$metadataTable
+cat("**Summary table**\n\n")
+saveToReport$summaryTable
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

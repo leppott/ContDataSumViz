@@ -1,0 +1,13 @@
+name: ContDataSumViz_EMVL_NoXLC
+title: ContDataSumViz_EMVL_NoXLC
+username:
+account: tetratech-wtr-wne
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 6798012
+bundleId: 6210157
+url: https://tetratech-wtr-wne.shinyapps.io/ContDataSumViz_EMVL_NoXLC/
+when: 1660739475.50913
+lastSyncTime: 1660739475.50913
+asMultiple: FALSE
+asStatic: FALSE
