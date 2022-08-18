@@ -18,6 +18,10 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.1.0.9015 (2022-08-18)
+
+* fix: Uncomment the failing parts of the shiny code in the full version
+
 ## Changes in Version 0.1.0.9014 (2022-08-18)
 
 * feature: Add slim version of Shiny app that works on server

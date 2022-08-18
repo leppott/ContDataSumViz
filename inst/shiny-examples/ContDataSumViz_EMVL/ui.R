@@ -163,150 +163,150 @@ shinyUI(fluidPage(
                                                                       ), # tabPanel 1 end
 
                                                           ### DE, All, TS Plots ----
-                                                          # tabPanel("Time series plots", value="tab_time_series",br(),
-                                                          #          column(width = 12,
-                                                          #                 sidebarLayout(
-                                                          #                   sidebarPanel(width=3,
-                                                          #                                uiOutput("time_series_input_1"),
-                                                          #                                hr(),
-                                                          #                                uiOutput("time_series_input_2"),
-                                                          #                                div(
-                                                          #                                  id = "cp_shaded_region",
-                                                          #                                  conditionalPanel(
-                                                          #                                    condition = "input$dailyStats_ts_metrics == 'mean'|input$dailyStats_ts_metrics == 'median'",
-                                                          #                                    hr(),
-                                                          #                                    uiOutput("time_series_input_3"),
-                                                          #                                  ), #conditionalPanel end
-                                                          #                                ), # div end
-                                                          #                                shinyjs::hidden(
-                                                          #                                  div(
-                                                          #                                    id = "cp_new_data",
-                                                          #                                    conditionalPanel(
-                                                          #                                      condition = "input$dailyStats_shading == 'newData' " ,
-                                                          #                                      hr(),
-                                                          #                                      fileInput("uploaded_newData_file",label="Upload your new data",multiple=FALSE,
-                                                          #                                                accept = c("text/csv","text/comma-separated-values,text/plain",".csv")),
-                                                          #                                      hr(),
-                                                          #                                      selectizeInput("newData_lower_col",label ="Select column to be used as lower bound",
-                                                          #                                                     choices=NULL,
-                                                          #                                                     multiple = FALSE,
-                                                          #                                                     selected=NULL,
-                                                          #                                                     options = list(hideSelected = FALSE)),
-                                                          #                                      hr(),
-                                                          #                                      selectizeInput("newData_upper_col",label ="Select column to be used as upper bound",
-                                                          #                                                     choices=NULL,
-                                                          #                                                     multiple = FALSE,
-                                                          #                                                     selected=NULL,
-                                                          #                                                     options = list(hideSelected = FALSE)),
-                                                          #                                      hr(),
-                                                          #                                      selectizeInput("newData_date_col",label ="Select date column",
-                                                          #                                                     choices=NULL,
-                                                          #                                                     multiple = FALSE,
-                                                          #                                                     selected=NULL,
-                                                          #                                                     options = list(hideSelected = FALSE)),
-                                                          #                                      hr(),
-                                                          #                                      textInput("newData_name",label="New data name",value="USGS")
-                                                          #
-                                                          #                                    ), #conditionalPanel end
-                                                          #                                  ) # div end
-                                                          #                                ), #shinyjs:: hidden end
-                                                          #
-                                                          #                                hr(),
-                                                          #                                uiOutput("time_series_input_4"),
-                                                          #                                hr(),
-                                                          #                                fluidRow(column(width=6,
-                                                          #                                                uiOutput("time_series_input_5")
-                                                          #                                               ),
-                                                          #                                         column(width=6,align="right",
-                                                          #                                                uiOutput("time_series_input_6")
-                                                          #                                               )
-                                                          #                                         ) # fluidRow close
-                                                          #                   ),
-                                                          #                   mainPanel(width=9,
-                                                          #                             fluidRow(column(width=9,uiOutput("display_time_series"))),
-                                                          #                             br(),
-                                                          #                             fluidRow(column(width=9,uiOutput("display_time_series_1"))),
-                                                          #                             br()
-                                                          #
-                                                          #                   ) # mainPanel end
-                                                          #
-                                                          #                 ) # sidebarLayout end
-                                                          #
-                                                          #          ), #column close
-                                                          #          br(),
-                                                          #          column(width =12,
-                                                          #                 uiOutput("another_time_series_UI"))
-                                                          #
-                                                          # ), #tabPanel 2 end
+                                                          tabPanel("Time series plots", value="tab_time_series",br(),
+                                                                   column(width = 12,
+                                                                          sidebarLayout(
+                                                                            sidebarPanel(width=3,
+                                                                                         uiOutput("time_series_input_1"),
+                                                                                         hr(),
+                                                                                         uiOutput("time_series_input_2"),
+                                                                                         div(
+                                                                                           id = "cp_shaded_region",
+                                                                                           conditionalPanel(
+                                                                                             condition = "input$dailyStats_ts_metrics == 'mean'|input$dailyStats_ts_metrics == 'median'",
+                                                                                             hr(),
+                                                                                             uiOutput("time_series_input_3"),
+                                                                                           ), #conditionalPanel end
+                                                                                         ), # div end
+                                                                                         shinyjs::hidden(
+                                                                                           div(
+                                                                                             id = "cp_new_data",
+                                                                                             conditionalPanel(
+                                                                                               condition = "input$dailyStats_shading == 'newData' " ,
+                                                                                               hr(),
+                                                                                               fileInput("uploaded_newData_file",label="Upload your new data",multiple=FALSE,
+                                                                                                         accept = c("text/csv","text/comma-separated-values,text/plain",".csv")),
+                                                                                               hr(),
+                                                                                               selectizeInput("newData_lower_col",label ="Select column to be used as lower bound",
+                                                                                                              choices=NULL,
+                                                                                                              multiple = FALSE,
+                                                                                                              selected=NULL,
+                                                                                                              options = list(hideSelected = FALSE)),
+                                                                                               hr(),
+                                                                                               selectizeInput("newData_upper_col",label ="Select column to be used as upper bound",
+                                                                                                              choices=NULL,
+                                                                                                              multiple = FALSE,
+                                                                                                              selected=NULL,
+                                                                                                              options = list(hideSelected = FALSE)),
+                                                                                               hr(),
+                                                                                               selectizeInput("newData_date_col",label ="Select date column",
+                                                                                                              choices=NULL,
+                                                                                                              multiple = FALSE,
+                                                                                                              selected=NULL,
+                                                                                                              options = list(hideSelected = FALSE)),
+                                                                                               hr(),
+                                                                                               textInput("newData_name",label="New data name",value="USGS")
+
+                                                                                             ), #conditionalPanel end
+                                                                                           ) # div end
+                                                                                         ), #shinyjs:: hidden end
+
+                                                                                         hr(),
+                                                                                         uiOutput("time_series_input_4"),
+                                                                                         hr(),
+                                                                                         fluidRow(column(width=6,
+                                                                                                         uiOutput("time_series_input_5")
+                                                                                                        ),
+                                                                                                  column(width=6,align="right",
+                                                                                                         uiOutput("time_series_input_6")
+                                                                                                        )
+                                                                                                  ) # fluidRow close
+                                                                            ),
+                                                                            mainPanel(width=9,
+                                                                                      fluidRow(column(width=9,uiOutput("display_time_series"))),
+                                                                                      br(),
+                                                                                      fluidRow(column(width=9,uiOutput("display_time_series_1"))),
+                                                                                      br()
+
+                                                                            ) # mainPanel end
+
+                                                                          ) # sidebarLayout end
+
+                                                                   ), #column close
+                                                                   br(),
+                                                                   column(width =12,
+                                                                          uiOutput("another_time_series_UI"))
+
+                                                          ), #tabPanel 2 end
 
                                                           ### DE, All, TS Annual----
-                                                          # tabPanel("Time series - Annual overlays", value="tab_time_series_overlay",br(),
-                                                          #          column(width = 12,
-                                                          #                 sidebarLayout(
-                                                          #                   sidebarPanel(width=3,
-                                                          #                                uiOutput("time_series_overlay_input_1"),
-                                                          #                                hr(),
-                                                          #                                uiOutput("time_series_overlay_input_2"),
-                                                          #                                hr(),
-                                                          #                                uiOutput("time_series_overlay_input_3"),
-                                                          #                                hr(),
-                                                          #                                uiOutput("time_series_overlay_input_4"),
-                                                          #                                shinyjs::hidden(
-                                                          #                                  div(
-                                                          #                                    id = "cp_new_data_overlay",
-                                                          #                                    conditionalPanel(
-                                                          #                                      condition = "input$overlay_shading == 'newData' " ,
-                                                          #                                      hr(),
-                                                          #                                      fileInput("uploaded_overlay_newData_file",label="Upload your new data",multiple=FALSE,
-                                                          #                                                accept = c("text/csv","text/comma-separated-values,text/plain",".csv")),
-                                                          #                                      hr(),
-                                                          #                                      selectizeInput("overlay_newData_lower_col",label ="Select column to be used as lower bound",
-                                                          #                                                     choices=NULL,
-                                                          #                                                     multiple = FALSE,
-                                                          #                                                     selected=NULL,
-                                                          #                                                     options = list(hideSelected = FALSE)),
-                                                          #
-                                                          #                                      hr(),
-                                                          #                                      selectizeInput("overlay_newData_longterm_col",label ="Select column to be used as long-term reference line",
-                                                          #                                                     choices=NULL,
-                                                          #                                                     multiple = FALSE,
-                                                          #                                                     selected=NULL,
-                                                          #                                                     options = list(hideSelected = FALSE)),
-                                                          #                                      hr(),
-                                                          #                                      selectizeInput("overlay_newData_upper_col",label ="Select column to be used as upper bound",
-                                                          #                                                     choices=NULL,
-                                                          #                                                     multiple = FALSE,
-                                                          #                                                     selected=NULL,
-                                                          #                                                     options = list(hideSelected = FALSE)),
-                                                          #                                      hr(),
-                                                          #                                      selectizeInput("overlay_newData_date_col",label ="Select month-day column",
-                                                          #                                                     choices=NULL,
-                                                          #                                                     multiple = FALSE,
-                                                          #                                                     selected=NULL,
-                                                          #                                                     options = list(hideSelected = FALSE)),
-                                                          #                                      hr(),
-                                                          #                                      textInput("overlay_newData_name",label="New data name",
-                                                          #                                                value="USGS")
-                                                          #
-                                                          #                                    ), #conditionalPanel end
-                                                          #                                  ) # div end
-                                                          #                                ), #shinyjs:: hidden end
-                                                          #                                hr(),
-                                                          #                                uiOutput("time_series_overlay_input_5"),
-                                                          #                   ),
-                                                          #                   mainPanel(width=9,
-                                                          #                             fluidRow(column(width=9,uiOutput("display_time_series_overlay"))),
-                                                          #                             br(),
-                                                          #                             fluidRow(column(width=9,uiOutput("display_time_series_overlay_1"))),
-                                                          #                             br()
-                                                          #
-                                                          #                   ) # mainPanel end
-                                                          #
-                                                          #                 ) # sidebarLayout end
-                                                          #
-                                                          #          ), #column close
-                                                          #
-                                                          # ), #tabPanel 3 end
+                                                          tabPanel("Time series - Annual overlays", value="tab_time_series_overlay",br(),
+                                                                   column(width = 12,
+                                                                          sidebarLayout(
+                                                                            sidebarPanel(width=3,
+                                                                                         uiOutput("time_series_overlay_input_1"),
+                                                                                         hr(),
+                                                                                         uiOutput("time_series_overlay_input_2"),
+                                                                                         hr(),
+                                                                                         uiOutput("time_series_overlay_input_3"),
+                                                                                         hr(),
+                                                                                         uiOutput("time_series_overlay_input_4"),
+                                                                                         shinyjs::hidden(
+                                                                                           div(
+                                                                                             id = "cp_new_data_overlay",
+                                                                                             conditionalPanel(
+                                                                                               condition = "input$overlay_shading == 'newData' " ,
+                                                                                               hr(),
+                                                                                               fileInput("uploaded_overlay_newData_file",label="Upload your new data",multiple=FALSE,
+                                                                                                         accept = c("text/csv","text/comma-separated-values,text/plain",".csv")),
+                                                                                               hr(),
+                                                                                               selectizeInput("overlay_newData_lower_col",label ="Select column to be used as lower bound",
+                                                                                                              choices=NULL,
+                                                                                                              multiple = FALSE,
+                                                                                                              selected=NULL,
+                                                                                                              options = list(hideSelected = FALSE)),
+
+                                                                                               hr(),
+                                                                                               selectizeInput("overlay_newData_longterm_col",label ="Select column to be used as long-term reference line",
+                                                                                                              choices=NULL,
+                                                                                                              multiple = FALSE,
+                                                                                                              selected=NULL,
+                                                                                                              options = list(hideSelected = FALSE)),
+                                                                                               hr(),
+                                                                                               selectizeInput("overlay_newData_upper_col",label ="Select column to be used as upper bound",
+                                                                                                              choices=NULL,
+                                                                                                              multiple = FALSE,
+                                                                                                              selected=NULL,
+                                                                                                              options = list(hideSelected = FALSE)),
+                                                                                               hr(),
+                                                                                               selectizeInput("overlay_newData_date_col",label ="Select month-day column",
+                                                                                                              choices=NULL,
+                                                                                                              multiple = FALSE,
+                                                                                                              selected=NULL,
+                                                                                                              options = list(hideSelected = FALSE)),
+                                                                                               hr(),
+                                                                                               textInput("overlay_newData_name",label="New data name",
+                                                                                                         value="USGS")
+
+                                                                                             ), #conditionalPanel end
+                                                                                           ) # div end
+                                                                                         ), #shinyjs:: hidden end
+                                                                                         hr(),
+                                                                                         uiOutput("time_series_overlay_input_5"),
+                                                                            ),
+                                                                            mainPanel(width=9,
+                                                                                      fluidRow(column(width=9,uiOutput("display_time_series_overlay"))),
+                                                                                      br(),
+                                                                                      fluidRow(column(width=9,uiOutput("display_time_series_overlay_1"))),
+                                                                                      br()
+
+                                                                            ) # mainPanel end
+
+                                                                          ) # sidebarLayout end
+
+                                                                   ), #column close
+
+                                                          ), #tabPanel 3 end
 
                                                           ### DE, All, Box Plots----
                                                           tabPanel("Box plots", value="tab_box",br(),
@@ -471,47 +471,47 @@ shinyUI(fluidPage(
 
                                                                       ),
                                                                       ### DE, Temp, Air v Water ----
-                                                                      # tabPanel("Air vs Water",value = "sb2",br(),
-                                                                      #          column(width = 12,
-                                                                      #          sidebarLayout(
-                                                                      #            sidebarPanel(width=3,
-                                                                      #                         hr(),
-                                                                      #                         uiOutput("air_vs_water_input_1"),
-                                                                      #                         hr(),
-                                                                      #                         uiOutput("air_vs_water_input_2"),
-                                                                      #                         hr(),
-                                                                      #                         radioButtons("exclude_data_points",
-                                                                      #                                      "Limit the data points with air temperature",
-                                                                      #                                      choices = c("No"="No","Yes"="Yes"),
-                                                                      #                                      selected = "No"),
-                                                                      #                         shinyjs::hidden(
-                                                                      #                         div(
-                                                                      #                           id = "cp_air_temp",
-                                                                      #                         conditionalPanel(
-                                                                      #                         condition = "input$exclude_data_points == 'Yes' " ,
-                                                                      #                         hr(),
-                                                                      #                         uiOutput("air_vs_water_input_4"),
-                                                                      #                         ), #conditionalPanel end
-                                                                      #                         ) # div end
-                                                                      #                         ), #shinyjs:: hidden end
-                                                                      #                         hr(),
-                                                                      #                         uiOutput("display_thermal_sensitivity_button"),
-                                                                      #
-                                                                      #            ),
-                                                                      #            mainPanel(width=9,
-                                                                      #                      column(width=12
-                                                                      #                             ,uiOutput("display_help_text_air_water")
-                                                                      #                             ,uiOutput("display_thermal_sensitivity_plot_1")
-                                                                      #                             ,br()
-                                                                      #                             ,uiOutput("display_thermal_sensitivity_plot_2")
-                                                                      #                             )
-                                                                      #
-                                                                      #            ) # mainPanel end
-                                                                      #
-                                                                      #          ) # sidebarLayout end
-                                                                      #          ) # column close
-                                                                      #
-                                                                      # ), # AW end
+                                                                      tabPanel("Air vs Water",value = "sb2",br(),
+                                                                               column(width = 12,
+                                                                               sidebarLayout(
+                                                                                 sidebarPanel(width=3,
+                                                                                              hr(),
+                                                                                              uiOutput("air_vs_water_input_1"),
+                                                                                              hr(),
+                                                                                              uiOutput("air_vs_water_input_2"),
+                                                                                              hr(),
+                                                                                              radioButtons("exclude_data_points",
+                                                                                                           "Limit the data points with air temperature",
+                                                                                                           choices = c("No"="No","Yes"="Yes"),
+                                                                                                           selected = "No"),
+                                                                                              shinyjs::hidden(
+                                                                                              div(
+                                                                                                id = "cp_air_temp",
+                                                                                              conditionalPanel(
+                                                                                              condition = "input$exclude_data_points == 'Yes' " ,
+                                                                                              hr(),
+                                                                                              uiOutput("air_vs_water_input_4"),
+                                                                                              ), #conditionalPanel end
+                                                                                              ) # div end
+                                                                                              ), #shinyjs:: hidden end
+                                                                                              hr(),
+                                                                                              uiOutput("display_thermal_sensitivity_button"),
+
+                                                                                 ),
+                                                                                 mainPanel(width=9,
+                                                                                           column(width=12
+                                                                                                  ,uiOutput("display_help_text_air_water")
+                                                                                                  ,uiOutput("display_thermal_sensitivity_plot_1")
+                                                                                                  ,br()
+                                                                                                  ,uiOutput("display_thermal_sensitivity_plot_2")
+                                                                                                  )
+
+                                                                                 ) # mainPanel end
+
+                                                                               ) # sidebarLayout end
+                                                                               ) # column close
+
+                                                                      ), # AW end
 
                                                                       ### DE, Temp, GDD ----
                                                                       tabPanel("Growing degree days",value = "sb3",br(),
@@ -580,103 +580,103 @@ shinyUI(fluidPage(
                                                                       tags$head(tags$style("#help_text_IHA,#help_text_flashiness
                                                                                           {font-size:16px;color:black;font-style:bold;display:block; }")),
                                                                       ### DE, Hydro, IHA----
-                                                                      # tabPanel("IHA",value = "IHA_tab",br(),
-                                                                      #          column(width = 12,
-                                                                      #                 sidebarLayout(
-                                                                      #                   sidebarPanel(width=3,
-                                                                      #                                hr(),
-                                                                      #                                uiOutput("IHA_input_1"),
-                                                                      #                                hr(),
-                                                                      #                                uiOutput("IHA_input_2"),
-                                                                      #                                hr(),
-                                                                      #                                uiOutput("IHA_input_3"),
-                                                                      #                                hr(),
-                                                                      #                                uiOutput("IHA_input_4"),
-                                                                      #                                hr(),
-                                                                      #                                uiOutput("display_IHA_button"),
-                                                                      #                                hr(),
-                                                                      #                                uiOutput("display_save_IHA_button")
-                                                                      #
-                                                                      #                   ),
-                                                                      #                   mainPanel(width=9,
-                                                                      #                             column(width=12
-                                                                      #                                    ,uiOutput("display_help_text_IHA")
-                                                                      #                                    ,uiOutput("display_IHA_table_1")
-                                                                      #                                    ,uiOutput("display_IHA_plot_button_1")
-                                                                      #                                    ,shinyjs::hidden(
-                                                                      #                                      div(
-                                                                      #                                        id = "IHA_plot_1_panel",
-                                                                      #                                        conditionalPanel(
-                                                                      #                                          condition = "input$display_IHA_plot_1 %%2 !=0" ,
-                                                                      #                                          hr(),
-                                                                      #                                          uiOutput("IHA_plot_1"),
-                                                                      #                                        ), #conditionalPanel end
-                                                                      #                                      ) # div end
-                                                                      #                                    ) #shinyjs:: hidden end
-                                                                      #                                    ,br()
-                                                                      #                                    ,uiOutput("display_IHA_table_2")
-                                                                      #                                    ,uiOutput("display_IHA_plot_button_2")
-                                                                      #                                    ,shinyjs::hidden(
-                                                                      #                                      div(
-                                                                      #                                        id = "IHA_plot_2_panel",
-                                                                      #                                        conditionalPanel(
-                                                                      #                                          condition = "input$display_IHA_plot_2 %%2 !=0" ,
-                                                                      #                                          hr(),
-                                                                      #                                          uiOutput("IHA_plot_2a"),
-                                                                      #                                          br(),
-                                                                      #                                          uiOutput("IHA_plot_2b")
-                                                                      #                                        ), #conditionalPanel end
-                                                                      #                                      ) # div end
-                                                                      #                                    ) #shinyjs:: hidden end
-                                                                      #                                    ,br()
-                                                                      #                                    ,uiOutput("display_IHA_table_3")
-                                                                      #                                    ,uiOutput("display_IHA_plot_button_3")
-                                                                      #                                    ,shinyjs::hidden(
-                                                                      #                                      div(
-                                                                      #                                        id = "IHA_plot_3_panel",
-                                                                      #                                        conditionalPanel(
-                                                                      #                                          condition = "input$display_IHA_plot_3 %%2 !=0" ,
-                                                                      #                                          hr(),
-                                                                      #                                          uiOutput("IHA_plot_3")
-                                                                      #                                        ), #conditionalPanel end
-                                                                      #                                      ) # div end
-                                                                      #                                    ) #shinyjs:: hidden end
-                                                                      #                                    ,br()
-                                                                      #                                    ,uiOutput("display_IHA_table_4")
-                                                                      #                                    ,uiOutput("display_IHA_plot_button_4")
-                                                                      #                                    ,shinyjs::hidden(
-                                                                      #                                      div(
-                                                                      #                                        id = "IHA_plot_4_panel",
-                                                                      #                                        conditionalPanel(
-                                                                      #                                          condition = "input$display_IHA_plot_4 %%2 !=0" ,
-                                                                      #                                          hr(),
-                                                                      #                                          uiOutput("IHA_plot_4a"),
-                                                                      #                                          br(),
-                                                                      #                                          uiOutput("IHA_plot_4b")
-                                                                      #                                        ), #conditionalPanel end
-                                                                      #                                      ) # div end
-                                                                      #                                    ) #shinyjs:: hidden end
-                                                                      #                                    ,br()
-                                                                      #                                    ,uiOutput("display_IHA_table_5")
-                                                                      #                                    ,uiOutput("display_IHA_plot_button_5")
-                                                                      #                                    ,shinyjs::hidden(
-                                                                      #                                      div(
-                                                                      #                                        id = "IHA_plot_5_panel",
-                                                                      #                                        conditionalPanel(
-                                                                      #                                          condition = "input$display_IHA_plot_5 %%2 !=0" ,
-                                                                      #                                          hr(),
-                                                                      #                                          uiOutput("IHA_plot_5"),
-                                                                      #                                          br()
-                                                                      #                                        ), #conditionalPanel end
-                                                                      #                                      ) # div end
-                                                                      #                                    ) #shinyjs:: hidden end
-                                                                      #                             )
-                                                                      #
-                                                                      #                   ) # mainPanel end
-                                                                      #
-                                                                      #                 ) # sidebarLayout end
-                                                                      #          ) # column close
-                                                                      # ),  # tabpanel, end, IHA
+                                                                      tabPanel("IHA",value = "IHA_tab",br(),
+                                                                               column(width = 12,
+                                                                                      sidebarLayout(
+                                                                                        sidebarPanel(width=3,
+                                                                                                     hr(),
+                                                                                                     uiOutput("IHA_input_1"),
+                                                                                                     hr(),
+                                                                                                     uiOutput("IHA_input_2"),
+                                                                                                     hr(),
+                                                                                                     uiOutput("IHA_input_3"),
+                                                                                                     hr(),
+                                                                                                     uiOutput("IHA_input_4"),
+                                                                                                     hr(),
+                                                                                                     uiOutput("display_IHA_button"),
+                                                                                                     hr(),
+                                                                                                     uiOutput("display_save_IHA_button")
+
+                                                                                        ),
+                                                                                        mainPanel(width=9,
+                                                                                                  column(width=12
+                                                                                                         ,uiOutput("display_help_text_IHA")
+                                                                                                         ,uiOutput("display_IHA_table_1")
+                                                                                                         ,uiOutput("display_IHA_plot_button_1")
+                                                                                                         ,shinyjs::hidden(
+                                                                                                           div(
+                                                                                                             id = "IHA_plot_1_panel",
+                                                                                                             conditionalPanel(
+                                                                                                               condition = "input$display_IHA_plot_1 %%2 !=0" ,
+                                                                                                               hr(),
+                                                                                                               uiOutput("IHA_plot_1"),
+                                                                                                             ), #conditionalPanel end
+                                                                                                           ) # div end
+                                                                                                         ) #shinyjs:: hidden end
+                                                                                                         ,br()
+                                                                                                         ,uiOutput("display_IHA_table_2")
+                                                                                                         ,uiOutput("display_IHA_plot_button_2")
+                                                                                                         ,shinyjs::hidden(
+                                                                                                           div(
+                                                                                                             id = "IHA_plot_2_panel",
+                                                                                                             conditionalPanel(
+                                                                                                               condition = "input$display_IHA_plot_2 %%2 !=0" ,
+                                                                                                               hr(),
+                                                                                                               uiOutput("IHA_plot_2a"),
+                                                                                                               br(),
+                                                                                                               uiOutput("IHA_plot_2b")
+                                                                                                             ), #conditionalPanel end
+                                                                                                           ) # div end
+                                                                                                         ) #shinyjs:: hidden end
+                                                                                                         ,br()
+                                                                                                         ,uiOutput("display_IHA_table_3")
+                                                                                                         ,uiOutput("display_IHA_plot_button_3")
+                                                                                                         ,shinyjs::hidden(
+                                                                                                           div(
+                                                                                                             id = "IHA_plot_3_panel",
+                                                                                                             conditionalPanel(
+                                                                                                               condition = "input$display_IHA_plot_3 %%2 !=0" ,
+                                                                                                               hr(),
+                                                                                                               uiOutput("IHA_plot_3")
+                                                                                                             ), #conditionalPanel end
+                                                                                                           ) # div end
+                                                                                                         ) #shinyjs:: hidden end
+                                                                                                         ,br()
+                                                                                                         ,uiOutput("display_IHA_table_4")
+                                                                                                         ,uiOutput("display_IHA_plot_button_4")
+                                                                                                         ,shinyjs::hidden(
+                                                                                                           div(
+                                                                                                             id = "IHA_plot_4_panel",
+                                                                                                             conditionalPanel(
+                                                                                                               condition = "input$display_IHA_plot_4 %%2 !=0" ,
+                                                                                                               hr(),
+                                                                                                               uiOutput("IHA_plot_4a"),
+                                                                                                               br(),
+                                                                                                               uiOutput("IHA_plot_4b")
+                                                                                                             ), #conditionalPanel end
+                                                                                                           ) # div end
+                                                                                                         ) #shinyjs:: hidden end
+                                                                                                         ,br()
+                                                                                                         ,uiOutput("display_IHA_table_5")
+                                                                                                         ,uiOutput("display_IHA_plot_button_5")
+                                                                                                         ,shinyjs::hidden(
+                                                                                                           div(
+                                                                                                             id = "IHA_plot_5_panel",
+                                                                                                             conditionalPanel(
+                                                                                                               condition = "input$display_IHA_plot_5 %%2 !=0" ,
+                                                                                                               hr(),
+                                                                                                               uiOutput("IHA_plot_5"),
+                                                                                                               br()
+                                                                                                             ), #conditionalPanel end
+                                                                                                           ) # div end
+                                                                                                         ) #shinyjs:: hidden end
+                                                                                                  )
+
+                                                                                        ) # mainPanel end
+
+                                                                                      ) # sidebarLayout end
+                                                                               ) # column close
+                                                                      ),  # tabpanel, end, IHA
 
                                                                       ### DE, Hydro, Flashiness ----
                                                                       tabPanel("Flashiness",value = "Flashiness_tab",br(),
