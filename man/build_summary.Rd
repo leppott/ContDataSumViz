@@ -89,4 +89,6 @@ build_summary(dir_data = dir_data
               , output_format = output_format
               , output_file = output_file)
 
+# Open tempdir (Windows only)
+# shell.exec(tempdir())
 }

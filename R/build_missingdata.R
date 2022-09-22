@@ -19,6 +19,8 @@
 #' data summary report.  Default = NULL (internal package)
 #' @param output_format File type for output (html only).  Default = 'html'
 #' @param output_dir Output file path.  Default = working directory
+#' @param dayminrecpct Minimum percent for number of daily records.
+#' Default = 90
 #'
 #' @return Returns summary report in the specified format (HTML, PDF, or Word).
 #'
@@ -51,7 +53,8 @@ build_missingdata <- function(dir_data = tempdir()
                           , file_path_config = NULL
                           , file_path_rmd = NULL
                           , output_format = "html"
-                          , output_dir = tempdir()) {
+                          , output_dir = tempdir()
+                          , dayminrecpct = 90) {
 
   # DEBUG----
   boo_debug <- FALSE
@@ -129,6 +132,17 @@ build_missingdata <- function(dir_data = tempdir()
                                   , "."
                                   , output_format))
 
+  ## QC, dayminrecpct, numeric
+  if(is.numeric(dayminrecpct) == FALSE) {
+    msg <- "Minimum daily record percent is not numeric."
+    stop(msg)
+  }## IF ~ dayminrecpct, numeric
+
+  ## QC, dayminrecpct, range
+  if(dayminrecpct < 1 | dayminrecpct > 100) {
+    msg <- "Minimum daily record percent should be in the range 1 to 100."
+    stop(msg)
+  }## IF ~ dayminrecpct, numeric
 
   # Munge ----
   output_format <- tolower(output_format)

@@ -18,6 +18,11 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.1.0.9016 (2022-09-22)
+
+* fix: Correct code in build_summary, Issue #5
+    + Undoes correction made in Issue #3
+
 ## Changes in Version 0.1.0.9015 (2022-08-18)
 
 * fix: Uncomment the failing parts of the shiny code in the full version

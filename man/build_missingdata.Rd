@@ -10,7 +10,8 @@ build_missingdata(
   file_path_config = NULL,
   file_path_rmd = NULL,
   output_format = "html",
-  output_dir = tempdir()
+  output_dir = tempdir(),
+  dayminrecpct = 90
 )
 }
 \arguments{
@@ -27,6 +28,9 @@ data summary report.  Default = NULL (internal package)}
 \item{output_format}{File type for output (html only).  Default = 'html'}
 
 \item{output_dir}{Output file path.  Default = working directory}
+
+\item{dayminrecpct}{Minimum percent for number of daily records.
+Default = 90}
 }
 \value{
 Returns summary report in the specified format (HTML, PDF, or Word).

@@ -4,9 +4,19 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2022-08-18 16:17:06
+    #> Last Update: 2022-09-22 16:21:31
 
 # Version History
+
+## Changes in Version 0.1.0.9016 (2022-09-22)
+
+-   fix: Correct code in build_summary, Issue \#5
+    -   Undoes correction made in Issue \#3
+
+## Changes in Version 0.1.0.9015 (2022-08-18)
+
+-   fix: Uncomment the failing parts of the shiny code in the full
+    version
 
 ## Changes in Version 0.1.0.9014 (2022-08-18)
 

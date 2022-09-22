@@ -65,6 +65,8 @@
 #'               , output_format = output_format
 #'               , output_file = output_file)
 #'
+#' # Open tempdir (Windows only)
+#' # shell.exec(tempdir())
 #' @export
 build_summary <- function(dir_data = NULL
                           , file_main = "_metadata.xlsx"
@@ -139,7 +141,7 @@ build_summary <- function(dir_data = NULL
   }## IF ~ output_format
 
   # Read Meta ----
-  df_meta<- as.data.frame(readxl::read_excel(file.path(dir_data, file_main)
+  df_meta <- as.data.frame(readxl::read_excel(file.path(dir_data, file_main)
                                   , sheet = sheet_main))
   df_meta[, "Type"] <- tolower(df_meta[, "Type"])
 
@@ -155,7 +157,7 @@ build_summary <- function(dir_data = NULL
   df_meta[, "rowID"] <- 1:nrow(df_meta)
   df_merge <- merge(df_meta
                     , df_files
-                    , by.x = "rowID"
+                    , by.x = "Prefix"
                     , by.y = "Prefix"
                     , all.x = TRUE
                     , sort = FALSE)
