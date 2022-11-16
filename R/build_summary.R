@@ -47,7 +47,13 @@
 #' @return Returns summary report in the specified format (HTML, PDF, or Word).
 #'
 #' @examples
-#' dir_data        <- system.file("extdata/report", package="ContDataSumViz")
+#' # Copy Example Files to TempDir
+#' file.copy(system.file("extdata/report", package="ContDataSumViz")
+#'           , tempdir()
+#'           , recursive = TRUE)
+#'
+#' # Inputs
+#' dir_data        <- file.path(tempdir(), "report")
 #' file_main       <- "_Captions_SiteX.xlsx"
 #' sheet_main      <- "metadata"
 #' file_prefix_sep <- "_"

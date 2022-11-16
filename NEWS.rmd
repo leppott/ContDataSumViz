@@ -18,6 +18,13 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.1.0.9017 (2022-11-16)
+
+* refactor: Modified build_summary function 
+    + Modify example to use files from tempdir
+        - Copy first
+    + Add example of clickable URL to Excel example
+
 ## Changes in Version 0.1.0.9016 (2022-09-22)
 
 * fix: Correct code in build_summary, Issue #5
