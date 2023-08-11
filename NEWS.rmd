@@ -22,6 +22,8 @@ cat(paste0("Last Update: ",Sys.time()))
 
 * style: Edits to Site Summary report
 * style: Edits to build summary function
+* refactor: Create Multi-Site Summary Report
+* fix: Correct table building in Site Summary report to include 1st row
 
 ## Changes in Version 0.1.0.9017 (2022-11-16)
 

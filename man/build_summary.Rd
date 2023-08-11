@@ -63,12 +63,19 @@ Can also include "text" or "header" lines.
 "header" with a number (e.g., Header1 or Header2 or Header3) will be use the
 Caption to generate header text in the output.
 
-"figures" can be of any image type (e.g., png, jpg, or pdf).
+"figures" can be one of any image type (e.g., png, jpg, or pdf).  All images
+should be in the same format.
 
 "tables" are only allowed as CSV files at this time.
 
 Output is a self contained HTML file (default).  Future plans for PDF and
 Word (docx) formats.
+
+Special characters (e.g, #, %, (, etc) in table headers will be translated
+by R into ".".  Nor can table column headers start with a number.  R will
+translate them to an "X".
+
+Special characters in text do not always get translated properly.
 }
 \examples{
 # Copy Example Files to TempDir

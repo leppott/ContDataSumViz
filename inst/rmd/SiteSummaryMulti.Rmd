@@ -1,5 +1,5 @@
 ---
-title: "Site Summary"
+title: "Multi-Site Summary"
 date: "`r format(Sys.time(), '%Y-%m-%d %H:%M:%S')`"
 output:
   html_document:
@@ -20,15 +20,6 @@ knitr::opts_chunk$set(echo = FALSE, results = 'asis', warning = FALSE)
 
 ```
 
-# Site Information
-```{r head}
-cat(paste0("**Site ID**\n\n"
-           , df_merge[df_merge$Type == "id", "Caption"]
-           , "\n\n"))
-cat(paste0("**Site Description**\n\n"
-           , df_merge[df_merge$Type == "description", "Caption"]
-           , "\n\n"))
-```
 
 ```{r body}
 df_body <- df_merge[!(df_merge$Type %in% c("id", "description")), ]
@@ -36,7 +27,7 @@ nrow_body <- nrow(df_body)
 
 # Loop through rows
 for (i in seq_len(nrow_body)) {
-  i_Type <- df_body[i, "Type"]
+  i_Type <- tolower(df_body[i, "Type"])
   cat("\n\n")
   if (i_Type == "figure") {
     # Figure
