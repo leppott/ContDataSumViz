@@ -27,7 +27,7 @@ myTitle.Sub <- myParameters.Lab[i.num]
 i.flag <- paste(ContData.env$myName.Flag, i, sep = ".")
 
 # Title----
-cat("### ", myTitle.Sub, sep="")
+cat("### ", myTitle.Sub, sep = "")
 cat("\n\n")
 
 # Flags
@@ -46,8 +46,8 @@ myTable <- addmargins(table(data.import[,ContData.env$myName.Yr]
                           ,data.import[,ContData.env$myName.Mo]
                           , useNA = "ifany"))
 print(knitr::kable(myTable
-                   , format="markdown"
-                   , row.names=TRUE
+                   , format = "markdown"
+                   , row.names = TRUE
                    , caption = cap))
 cat("\n\n")
 

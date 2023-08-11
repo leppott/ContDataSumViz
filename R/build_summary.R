@@ -85,8 +85,8 @@ build_summary <- function(dir_data = NULL
   # DEBUG----
   boo_debug <- FALSE
   debug_version <- c("local", "pkg")[2]
-  if(boo_debug == TRUE) {
-    if(debug_version == "local") {
+  if (boo_debug == TRUE) {
+    if (debug_version == "local") {
       dir_data        <- file.path("inst", "extdata", "report")
       file_main       <- "_Captions_SiteX.xlsx"
       sheet_main      <- "metadata"
@@ -94,13 +94,14 @@ build_summary <- function(dir_data = NULL
       rmd_template    <- file.path("inst", "rmd", "SiteSummary.Rmd")
       output_format   <- "html"
       output_file = NULL
-    } else if(debug_version == "pkg") {
-      dir_data        <- system.file("extdata/report", package="ContDataSumViz")
+    } else if (debug_version == "pkg") {
+      dir_data        <- system.file("extdata/report"
+                                     , package = "ContDataSumViz")
       file_main       <- "_Captions_SiteX.xlsx"
       sheet_main      <- "metadata"
       file_prefix_sep <- "_"
       rmd_template    <- system.file("rmd/SiteSummary.Rmd"
-                                     , package="ContDataSumViz")
+                                     , package = "ContDataSumViz")
       output_format   <- "html"
       output_file     <- file.path(tempdir()
                                    , paste0("SiteSummary.", output_format))
@@ -109,37 +110,37 @@ build_summary <- function(dir_data = NULL
 
   # QC----
   ## QC, dir_data----
-  if(is.null(dir_data) | dir.exists(dir_data) == FALSE) {
+  if (is.null(dir_data) | dir.exists(dir_data) == FALSE) {
     msg <- "Data directory is null or doesn't exist."
     stop(msg)
   }## IF ~ dir_data
 
   ## QC, rmd, null----
-  if(is.null(rmd_template)) {
+  if (is.null(rmd_template)) {
     path_rmd <- system.file("extdata/rmd/SiteSummary.Rmd"
-                            , package="ContDataSumViz")
+                            , package = "ContDataSumViz")
   }## IF ~ rmd_template, null
 
   ## QC, rmd, exists----
-  if(file.exists(rmd_template) == FALSE) {
+  if (file.exists(rmd_template) == FALSE) {
     msg <- "RMD file does not exist."
     stop(msg)
   }## IF ~ rmd_template, exists
 
   ## QC, output_file----
-  if(is.null(output_file)) {
+  if (is.null(output_file)) {
     output_file <- file.path(paste0("SiteSummary.", output_format))
   }## IF ~ output_file, null
 
   # Munge ----
   output_format <- tolower(output_format)
-  if(output_format == "html") {
+  if (output_format == "html") {
     output_format <- paste0(output_format, "_document")
-  } else if(output_format == "pdf") {
+  } else if (output_format == "pdf") {
     output_format <- paste0(output_format, "_document")
-  } else if(output_format == "docx") {
+  } else if (output_format == "docx") {
     output_format <- "word_document"
-  } else if(is.null(output_format)) {
+  } else if (is.null(output_format)) {
     # outputs all formats based on yaml header
   } else {
     msg <- "Allowable formats are 'html', 'pdf', or 'docx'."

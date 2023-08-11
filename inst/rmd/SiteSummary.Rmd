@@ -38,14 +38,14 @@ nrow_body <- nrow(df_body)
 for (i in seq_len(nrow_body)) {
   i_Type <- df_body[i, "Type"]
   cat("\n\n")
-  if(i_Type == "figure") {
+  if (i_Type == "figure") {
     # Figure
     i_file <- file.path(dir_data_full, df_body[i, "Files"])
     i_cap <- df_body[i, "Caption"]
     #knitr::include_graphics(i_file)
     i_image <- paste0("![", i_cap, "](", i_file, ")")
     cat(i_image)
-  } else if(i_Type == "table") {
+  } else if (i_Type == "table") {
     # Table
     i_file <- file.path(dir_data_full, df_body[i, "Files"])
     i_cap <- df_body[i, "Caption"]
@@ -79,10 +79,10 @@ for (i in seq_len(nrow_body)) {
     # tbl caption
     i_tbl_caption <- paste0(": ", i_cap)
     cat(i_tbl_caption)
-  } else if(i_Type == "text") {
+  } else if (i_Type == "text") {
     # Text
     cat(paste0(df_body[i, "Caption"]))
-  } else if(i_Type %in% paste0("header", 1:3)) {
+  } else if (i_Type %in% paste0("header", 1:3)) {
     # Header
     header_num <- substr(i_Type, 7, 7)
     header_prefix <- paste(rep("#", header_num), collapse = "")

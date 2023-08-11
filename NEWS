@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2022-11-16 16:31:14
+    #> Last Update: 2023-08-11 10:07:38.992966
 
 # Version History
+
+## Changes in Version 0.1.0.9018 (2023-08-11)
+
+- style: Edits to Site Summary report
+- style: Edits to build summary function
 
 ## Changes in Version 0.1.0.9017 (2022-11-16)
 

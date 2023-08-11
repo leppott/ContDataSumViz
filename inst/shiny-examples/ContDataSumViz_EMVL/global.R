@@ -50,7 +50,7 @@ library("ContDataQC")
 library("ContDataSumViz")
 library("StreamThermal")
 library("IHA")
-library("XLConnect")
+#library("XLConnect")
 # fails without dplyr and stringr from tidyverse
 
 # Functions ----
