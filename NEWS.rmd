@@ -18,6 +18,10 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.1.0.9019 (2023-08-14)
+
+* refactor: Adjust summary reports to center justify (single and multi-site)
+
 ## Changes in Version 0.1.0.9018 (2023-08-11)
 
 * style: Edits to Site Summary report

@@ -52,9 +52,9 @@ for (i in seq_len(nrow_body)) {
                          , "|")
     cat(i_tbl_names)
     cat("\n")
-    # tbl horizontal line
+    # tbl horizontal line (center justify : on both ends)
     i_tbl_hl <- paste0("|"
-                       , paste(rep("---", ncol_df_i), collapse = "|")
+                       , paste(rep(":---:", ncol_df_i), collapse = "|")
                        , "|")
     cat(i_tbl_hl)
     cat("\n")
