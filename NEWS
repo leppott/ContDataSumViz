@@ -4,9 +4,13 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-08-14 09:15:14.248611
+    #> Last Update: 2023-12-18 10:45:45.722404
 
 # Version History
+
+## Changes in Version 0.1.0.9020 (2023-12-18)
+
+- refactor: Remove Site Information section from sing report.
 
 ## Changes in Version 0.1.0.9019 (2023-08-14)
 
